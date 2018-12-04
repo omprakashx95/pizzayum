@@ -81,41 +81,13 @@
                 android:text="R: $230     M: $500     R: $730"
                 android:textColor="#12a627"
                 android:textSize="16dp"
-                android:textStyle="normal" />
-
-            <RelativeLayout
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/devider"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/pizza_card_btn"
-                android:gravity="center"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="@font/athiti"
-                    android:gravity="center"
-                    android:text="ADD +"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                android:textStyle="bold"
+                android:visibility="visible"/>
 
             <LinearLayout
-                android:id="@+id/btn_active"
+                android:id="@+id/btn_container"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="27dp"
                 android:layout_below="@id/devider"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
@@ -124,40 +96,40 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/pizza_card_btn"
                 android:orientation="horizontal"
-                android:visibility="visible">
-
-                <ImageView
-                    android:id="@+id/plus"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:background="#FF5733"
-                    android:src="@drawable/plus_icon"
-                    android:padding="5dp"
-                    android:layout_margin="1dp"
-                    />
-
-                <TextView
-                    android:id="@+id/counter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/athiti"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/minus"
                     android:layout_width="25dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
                     android:src="@drawable/minus_icon"
-                    android:padding="6dp"
-                    android:background="@color/colorPrimary"
-                    android:layout_margin="1dp"/>
+                    android:padding="7dp"
+                    android:tint="@color/green_color"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:textColor="@color/green_color"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <ImageView
+                    android:id="@+id/plus"
+                    android:visibility="visible"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/plus_icon"
+                    android:padding="7dp"
+                    android:tint="@color/green_color"
+                    android:layout_gravity="center_vertical"
+                    />
             </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

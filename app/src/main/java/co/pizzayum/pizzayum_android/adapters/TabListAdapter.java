@@ -50,7 +50,7 @@ public class TabListAdapter extends RecyclerView.Adapter<TabListAdapter.MyViewHo
         if (PizzaConstants.ENABLE_POSITION == position){
             holder.item.setTextColor(Color.parseColor("#fc2e2a"));
         }else {
-            holder.item.setTextColor(Color.parseColor("#000000"));
+            holder.item.setTextColor(Color.parseColor("#666666"));
         }
     }
 

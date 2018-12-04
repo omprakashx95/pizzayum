@@ -17,22 +17,25 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
 
     private Context mContext;
     private List<Album> albumList;
-    private int counter ;
+    private int counter_value = 0 ;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, about, price_tag;
+        public TextView title, about, price_tag, counter;
         public ImageView thumbnail, btn_minus, btn_plus;
-        public View btn_view , card_view, btn_active;
+        public View card_view, btn_active;
+
         public MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
             about = view.findViewById(R.id.about);
             price_tag = view.findViewById(R.id.price_tag);
             thumbnail = view.findViewById(R.id.thumbnail);
-            btn_view = view.findViewById(R.id.btn);
+
             btn_minus = view.findViewById(R.id.minus);
             btn_plus = view.findViewById(R.id.plus);
             card_view = view.findViewById(R.id.card_view);
-            btn_active = view.findViewById(R.id.btn_active);
+            btn_active = view.findViewById(R.id.btn_container);
+            counter = view.findViewById(R.id.counter);
         }
     }
 
@@ -45,7 +48,6 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pizza_card, parent, false);
-
         return new MyViewHolder(itemView);
     }
 
@@ -57,55 +59,44 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
 
         String price_s;
         if (album.getMedium().equals("0") || album.getLarge().equals("0")) {
-            price_s = mContext.getString(R.string.Rs) + album.getRegular() ;
-            if (counter>0){
-                holder.btn_view.setVisibility(View.INVISIBLE);
-                holder.btn_active.setVisibility(View.VISIBLE);
-            }else{
-                holder.btn_view.setVisibility(View.VISIBLE);
-                holder.btn_view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.btn_view.setVisibility(View.INVISIBLE);
-                        holder.btn_active.setVisibility(View.VISIBLE);
-                    }
-                });
+            price_s = mContext.getString(R.string.Rs) + album.getRegular();
 
-                holder.btn_active.setVisibility(View.INVISIBLE);
-            }
-            holder.btn_view.setOnClickListener(new View.OnClickListener() {
+            visibilityController(holder.btn_active, true);
+            visibilityController(holder.btn_minus, false);
+            visibilityController(holder.btn_plus, false);
+            counter_value = 1 ;
+            holder.counter.setText("Add");
+            holder.btn_active.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+                    holder.btn_active.setClickable(false);
+                    holder.counter.setText(String.valueOf(counter_value));
+                    visibilityController(holder.btn_plus, true);
+                    visibilityController(holder.btn_minus, true);
                 }
             });
 
             holder.btn_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    holder.counter.setText(String.valueOf(counter_value++));
                 }
             });
 
             holder.btn_minus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    holder.counter.setText(String.valueOf(counter_value--));
                 }
             });
+
 
         } else {
             price_s = "R : " + mContext.getString(R.string.Rs) + album.getRegular() +
                     "     M : " + mContext.getString(R.string.Rs) + album.getMedium() +
                     "     L : " + mContext.getString(R.string.Rs) + album.getLarge();
-            holder.btn_view.setVisibility(View.INVISIBLE);
 
-            holder.card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
+            holder.btn_active.setVisibility(View.INVISIBLE);
         }
 
         holder.price_tag.setText(price_s);
@@ -114,5 +105,14 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
     @Override
     public int getItemCount() {
         return albumList.size();
+    }
+
+
+    private  void visibilityController(View v, boolean flag) {
+        if (flag) {
+            v.setVisibility(View.VISIBLE);
+        } else {
+            v.setVisibility(View.INVISIBLE);
+        }
     }
 }
