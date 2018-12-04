@@ -8,4 +8,8 @@
     <color name="black">#000000</color>
     <color name="disable">#e3e6e6e6</color>
 
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+
+    <color name="bg_color">#F5F5F5</color>
 </resources>

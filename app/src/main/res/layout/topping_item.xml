@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/pizza_crust_bg"
+    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp">
+
+    <ImageView
+        android:id="@+id/topping_pic"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/tomato"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:layout_below="@id/topping_pic"
+        android:id="@+id/topping_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOMATO"
+        android:fontFamily="@font/athiti"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"/>
+</RelativeLayout>

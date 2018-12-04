@@ -29,8 +29,7 @@ public class TextViewPlus extends AppCompatTextView {
     private void setCustomFont(Context ctx, AttributeSet attrs) {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.TextViewPlus);
         String customFont = a.getString(R.styleable.TextViewPlus_customFont);
-        setCustomFont(ctx, customFont);
-        a.recycle();
+        setCustomFont(ctx, customFont);        a.recycle();
     }
 
     public boolean setCustomFont(Context ctx, String asset) {
