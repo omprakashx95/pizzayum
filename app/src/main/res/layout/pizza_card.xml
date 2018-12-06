@@ -85,52 +85,55 @@
                 android:visibility="visible"/>
 
             <LinearLayout
-                android:id="@+id/btn_container"
+                android:id="@+id/btn"
                 android:layout_width="wrap_content"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:layout_below="@id/devider"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/pizza_card_btn"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:background="@drawable/pizza_card_btn"
+                android:layout_marginTop="6dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true">
 
                 <ImageView
                     android:id="@+id/minus"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_alignParentLeft="true"
                     android:src="@drawable/minus_icon"
-                    android:padding="7dp"
                     android:tint="@color/green_color"
-                    android:layout_gravity="center_vertical"/>
+                    android:padding="7dp"
+                    android:layout_gravity="center_vertical"
+                    >
+                </ImageView>
 
                 <TextView
                     android:id="@+id/counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add"
-                    android:textColor="@color/green_color"
-                    android:textSize="13dp"
-                    android:textStyle="bold"
+                    android:text="2"
                     android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="15dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    />
 
                 <ImageView
                     android:id="@+id/plus"
-                    android:visibility="visible"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/plus_icon"
-                    android:padding="7dp"
                     android:tint="@color/green_color"
-                    android:layout_gravity="center_vertical"
-                    />
+                    android:padding="7dp"
+                    android:layout_gravity="center_vertical">
+                </ImageView>
+
             </LinearLayout>
+
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

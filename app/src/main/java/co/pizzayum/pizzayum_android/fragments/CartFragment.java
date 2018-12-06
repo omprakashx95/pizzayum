@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import co.pizzayum.pizzayum_android.R;
 
 //Our class extending fragment
 public class CartFragment extends Fragment {
+
 
     public static CartFragment newInstance() {
         return new CartFragment();
@@ -25,6 +28,5 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 }

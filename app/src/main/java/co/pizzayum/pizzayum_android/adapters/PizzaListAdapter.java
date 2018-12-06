@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +22,8 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, about, price_tag, counter;
-        public ImageView thumbnail, btn_minus, btn_plus;
+        public ImageView thumbnail ;
+        public Button btn_minus, btn_plus;
         public View card_view, btn_active;
 
         public MyViewHolder(View view) {
@@ -31,11 +33,11 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
             price_tag = view.findViewById(R.id.price_tag);
             thumbnail = view.findViewById(R.id.thumbnail);
 
-            btn_minus = view.findViewById(R.id.minus);
-            btn_plus = view.findViewById(R.id.plus);
-            card_view = view.findViewById(R.id.card_view);
-            btn_active = view.findViewById(R.id.btn_container);
-            counter = view.findViewById(R.id.counter);
+//            btn_minus = view.findViewById(R.id.minus);
+//            btn_plus = view.findViewById(R.id.plus);
+//            card_view = view.findViewById(R.id.card_view);
+            btn_active = view.findViewById(R.id.btn);
+//            counter = view.findViewById(R.id.counter);
         }
     }
 
@@ -62,34 +64,33 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
             price_s = mContext.getString(R.string.Rs) + album.getRegular();
 
             visibilityController(holder.btn_active, true);
-            visibilityController(holder.btn_minus, false);
-            visibilityController(holder.btn_plus, false);
-            counter_value = 1 ;
-            holder.counter.setText("Add");
-            holder.btn_active.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder.btn_active.setClickable(false);
-                    holder.counter.setText(String.valueOf(counter_value));
-                    visibilityController(holder.btn_plus, true);
-                    visibilityController(holder.btn_minus, true);
-                }
-            });
-
-            holder.btn_plus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder.counter.setText(String.valueOf(counter_value++));
-                }
-            });
-
-            holder.btn_minus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    holder.counter.setText(String.valueOf(counter_value--));
-                }
-            });
-
+//            visibilityController(holder.btn_minus, false);
+//            visibilityController(holder.btn_plus, false);
+//            counter_value = 1 ;
+//            holder.counter.setText("Add");
+//            holder.btn_active.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    holder.btn_active.setClickable(false);
+//                    holder.counter.setText(String.valueOf(counter_value));
+//                    visibilityController(holder.btn_plus, true);
+//                    visibilityController(holder.btn_minus, true);
+//                }
+//            });
+//
+//            holder.btn_plus.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    holder.counter.setText(String.valueOf(counter_value++));
+//                }
+//            });
+//
+//            holder.btn_minus.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    holder.counter.setText(String.valueOf(counter_value--));
+//                }
+//            });
 
         } else {
             price_s = "R : " + mContext.getString(R.string.Rs) + album.getRegular() +
@@ -106,7 +107,6 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.MyVi
     public int getItemCount() {
         return albumList.size();
     }
-
 
     private  void visibilityController(View v, boolean flag) {
         if (flag) {
