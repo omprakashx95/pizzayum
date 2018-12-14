@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/size_slider_item_bg">
+    <TextView
+        android:id="@+id/pizza_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium"
+        android:fontFamily="@font/athiti"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/pizza_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pizza_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="$ 400"
+        android:textStyle="bold"
+        android:textColor="@color/green_color"
+        android:textSize="15dp"
+        android:fontFamily="@font/athiti"/>
+</RelativeLayout>

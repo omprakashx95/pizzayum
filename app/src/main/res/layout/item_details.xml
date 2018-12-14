@@ -3,13 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/pizza_pic"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pizza_bg" />
+
+    <!-- toolbar layout-->
     <RelativeLayout
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -17,21 +25,24 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/back_button" />
+            android:src="@drawable/back_button"
+            android:tint="@color/white"/>
 
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/wish_unclicked" />
+            android:src="@drawable/wish_unclicked"
+            android:tint="@color/white"/>
     </RelativeLayout>
 
+    <!--intro section-->
     <RelativeLayout
         android:id="@+id/top"
-        android:layout_below="@id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/pizza_pic"
         android:background="@color/white"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -45,6 +56,7 @@
             android:text="Classic Veg"
             android:textColor="@color/black"
             android:textSize="18dp"
+            android:layout_marginTop="10dp"
             android:textStyle="bold" />
 
         <TextView
@@ -67,61 +79,60 @@
 
         <View
             android:id="@+id/hd"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/lbl"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#f1f1f1"/>
+            android:layout_below="@+id/lbl"
+            android:layout_marginTop="10dp"
+            android:background="#f1f1f1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_below="@id/hd"
-            android:orientation="horizontal"
-            android:background="@drawable/pizza_card_btn"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true">
+            android:background="@drawable/pizza_card_btn"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/minus"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
-                android:src="@drawable/minus_icon"
-                android:tint="@color/green_color"
-                android:padding="7dp"
                 android:layout_gravity="center_vertical"
-                />
+                android:padding="7dp"
+                android:src="@drawable/minus_icon"
+                android:tint="@color/green_color" />
 
             <TextView
                 android:id="@+id/counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12"
                 android:layout_gravity="center_vertical"
-                android:textStyle="bold"
-                android:fontFamily="@font/athiti"
-                android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                />
+                android:fontFamily="@font/athiti"
+                android:text="1"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/plus"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
-                android:src="@drawable/plus_icon"
-                android:tint="@color/green_color"
+                android:layout_gravity="center_vertical"
                 android:padding="7dp"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/plus_icon"
+                android:tint="@color/green_color" />
 
         </LinearLayout>
     </RelativeLayout>
 
+    <!--sliders-->
     <RelativeLayout
         android:id="@+id/modify"
-        android:layout_below="@id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/top"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:paddingLeft="16dp"
@@ -136,131 +147,35 @@
             android:fontFamily="@font/athiti"
             android:text="Select Size" />
 
-        <LinearLayout
-            android:id="@+id/size_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/size_label"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/size_slider"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/size_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/bg_color"
-                android:fontFamily="@font/athiti"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="Reguler"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/size_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:background="@color/bg_color"
-                android:fontFamily="@font/athiti"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="Medium"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/size_large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:background="@color/bg_color"
-                android:fontFamily="@font/athiti"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="Large"
-                android:textColor="@color/black" />
-        </LinearLayout>
+            android:layout_below="@id/size_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/crust_label"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/size_slider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/size_container"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/athiti"
-            android:text="Choice of crust" />
+            android:text="Choice of crust " />
 
-        <LinearLayout
-            android:id="@+id/crust_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/crust_slider"
+            android:layout_marginTop="5dp"
             android:layout_below="@id/crust_label"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/crust_thin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/bg_color"
-                android:fontFamily="@font/athiti"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="Thin Crust"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/crust_burst"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:background="@color/bg_color"
-                android:fontFamily="@font/athiti"
-                android:paddingLeft="15dp"
-                android:paddingTop="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="Cheese Burst"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/extra_cheese_lbl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/crust_container"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/athiti"
-            android:text="Do you want extra cheese"/>
-
-        <TextView
-            android:id="@+id/extra_cheese"
-            android:layout_below="@id/extra_cheese_lbl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/bg_color"
-            android:fontFamily="@font/athiti"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="5dp"
-            android:text="Extra Cheese"
-            android:textColor="@color/black" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/topping_selector"
-        android:layout_below="@id/modify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/modify"
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:paddingLeft="16dp"
@@ -273,35 +188,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/athiti"
-            android:text="Add Topping" />
+            android:text="Extra Topping" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/crust_list"
+            android:id="@+id/topping_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/topping_label"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_alignParentBottom="true"
+        android:id="@+id/cart_footer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        >
+        android:visibility="visible">
+
         <TextView
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/athiti"
             android:text="1 item"
             android:textColor="@color/white"
-            android:fontFamily="@font/athiti"
-            android:textSize="13dp"
-            android:layout_centerVertical="true"
-            />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/bill"
@@ -313,22 +229,21 @@
             android:text="$ 234"
             android:textColor="@color/white"
             android:textSize="18dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/cart_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADD TO CART"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/athiti"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/add_cart_btn_bg"
+            android:fontFamily="@font/athiti"
             android:padding="5dp"
+            android:text="ADD TO CART"
             android:textColor="@color/white"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:textSize="13dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </RelativeLayout>

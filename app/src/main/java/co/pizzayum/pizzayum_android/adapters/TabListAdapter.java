@@ -6,13 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
-import co.pizzayum.pizzayum_android.models.Album;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 
 public class TabListAdapter extends RecyclerView.Adapter<TabListAdapter.MyViewHolder> {

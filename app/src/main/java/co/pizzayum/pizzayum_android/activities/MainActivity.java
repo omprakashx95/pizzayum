@@ -17,8 +17,6 @@ import co.pizzayum.pizzayum_android.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActionBar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

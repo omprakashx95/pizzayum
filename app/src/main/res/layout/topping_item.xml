@@ -5,7 +5,7 @@
     android:layout_height="100dp"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:background="@drawable/pizza_crust_bg"
+    android:background="@drawable/size_slider_item_bg"
     android:layout_marginRight="10dp"
     android:layout_marginEnd="10dp">
 

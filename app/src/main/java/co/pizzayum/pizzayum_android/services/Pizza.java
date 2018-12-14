@@ -20,7 +20,7 @@ import java.util.Map;
 
 import co.pizzayum.pizzayum_android.adapters.PizzaListAdapter;
 import co.pizzayum.pizzayum_android.adapters.TabListAdapter;
-import co.pizzayum.pizzayum_android.models.Album;
+import co.pizzayum.pizzayum_android.models.PizzaDetailsModel;
 import co.pizzayum.pizzayum_android.models.PizzaCategory;
 import co.pizzayum.pizzayum_android.utility.AppController;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
@@ -45,7 +45,7 @@ public class Pizza {
      * This method is used here to make a http request to fetch the pizza list from the server
      */
     public void fetchingCategories(final TabListAdapter adapter, final List<String> list_data,
-                                   final PizzaListAdapter list_adapter, final List<Album> data) {
+                                   final PizzaListAdapter list_adapter, final List<PizzaDetailsModel> data) {
 
         final String authorization_value = "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI0MjNlNDg2ZTBkM2ZhNzNmNzJlNzc1NTk5YjdmZGJlZGQ3NmFkNWRhYjBiYmJiZWI1MjZmNjI0MjcwNDE3ZmQyMDliNjA1Yzc3ZDc2Y2E1In0.eyJhdWQiOiIyIiwianRpIjoiYjQyM2U0ODZlMGQzZmE3M2Y3MmU3NzU1OTliN2ZkYmVkZDc2YWQ1ZGFiMGJiYmJlYjUyNmY2MjQyNzA0MTdmZDIwOWI2MDVjNzdkNzZjYTUiLCJpYXQiOjE1NDI4NTQyMjQsIm5iZiI6MTU0Mjg1NDIyNCwiZXhwIjoxNTc0MzkwMjIzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.Q4zdNWIhiF-wpf_HmNjw01pho4QyldsQsDsb0GYIWjaxekpFqJ5s2Bb3cRPtbviIQIVTl_2vAjdNt3Dy-qVAgokY-AJXuRJlu3q_iugwUXu6VsRaYwT3-Q3zz4GWPjbzskvL_dGHE7zj3_W-wFmR-RHwI1rMtg5TK2WbP5j_dupwGBIBvl9eouVjiUxSj4LuAT1UjW7UP_dnuomiv-jPkAfGvAPPp4HSoyraOEyT7BbqIKS_BE2bKvyUBjg61UA7km-sXEgXyR6WJcYy5txnrn3T52KffGh9EvFbV_u9nnMq1tT_inAA-KkDcvVTCKFNTI7VxD_8aFAAc0SkIAdQQ-O6YLGYsVglGWKXsL_X9GkDadz5k9ZJNW-TVizy1Fb37HZgOKvx6ILN51RD2AmWr5q7VLPcFM3-W8c5Xoox2WWEbIbJIJmT8ReT4B0jy63lJCXaTNopCVZetmTv63MGUQpPKilTEOCE9dxv3lNp_qMH9Ny_1XR8eUzotnz5Athg-DMNm2a1peCCqxa8hZAD-pCiBd4lnH2U3CzOimXKiTDOAlZcUuzjpYtSAdGCtpb4PxOeFZGXzW4-USDBGLnI0mrMRwJXquqGyIeAMEtdXvHsoNguT-9r86CKPeHAfje-2_VrmE9E_wWY6KxOF6-x9UrY8NtzWNRDkWAxfT_TGas";
 
@@ -57,8 +57,8 @@ public class Pizza {
         loading.show();
 
         String tag_string_req = "string_req";
-        String url = PizzaConstants.BASE_URL + "/" + PizzaConstants.CATEGORY;
-
+        //String url = PizzaConstants.BASE_URL + "/" + PizzaConstants.CATEGORY;
+        String url = "http://www.pizzayum.co/api/pizza";
         String tag_json_arry = "JSON Array Request";
 
         // jason object request
@@ -76,21 +76,21 @@ public class Pizza {
 
                         // assigning data in model class, we initializing this class as a array type
                         // because the response is in array format
-                        PizzaCategory getResult = gson.fromJson(response.toString(), PizzaCategory.class);
+                       // PizzaCategory getResult = gson.fromJson(response.toString(), PizzaCategory.class);
 
-                        Log.e("getResult", "Result" + getResult.toString());
-                        for (int i = 0; i < getResult.getCategory().size(); i++) {
-                            list_data.add(getResult.getCategory().get(i));
-                        }
-
-                        adapter.notifyDataSetChanged();
+//                        Log.e("getResult", "Result" + getResult.toString());
+//                        for (int i = 0; i < getResult.getCategory().size(); i++) {
+//                            list_data.add(getResult.getCategory().get(i));
+//                        }
+//
+//                        adapter.notifyDataSetChanged();
 
                         loading.dismiss();
 
-                        if (getResult.getCategory().size() > 0) {
-                            PizzaConstants.CATEGORY_NAME = getResult.getCategory().get(0);
-                            new SelectPizzaCat(activity).fetchingSelectedCat(list_adapter, data);
-                        }
+//                        if (getResult.getCategory().size() > 0) {
+//                            PizzaConstants.CATEGORY_NAME = getResult.getCategory().get(0);
+//                            new PizzaService(activity).fetchingSelectedCat(list_adapter, data);
+//                        }
                     }
 
                 }, new Response.ErrorListener() {

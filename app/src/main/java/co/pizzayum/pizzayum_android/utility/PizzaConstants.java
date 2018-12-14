@@ -3,6 +3,7 @@ package co.pizzayum.pizzayum_android.utility;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.models.PizzaCategory;
+import co.pizzayum.pizzayum_android.models.SelectedCatResponse;
 
 public class PizzaConstants {
 
@@ -11,10 +12,21 @@ public class PizzaConstants {
     public static String CATEGORY_NAME;
     public static int ENABLE_POSITION = 0;
 
+    public static int SIZE_ENABLE_POSITION = 0;
+
+    public static String PIZZA_CRUST_PRICE = "0" ;
+    public static String PIZZA_CRUST_ID ;
+    public static String REGULAR_PRICE = "0" ;
+    public static String MEDIUM_PRICE;
+    public static String LARGE_PRICE ;
+    public static String SELECTED_PIZZA_PRICE = REGULAR_PRICE;
+    public static String SELECTED_PIZZA_SIZE = "Reguler";
+
+    public static SelectedCatResponse[] getResult ;
+
     // Pizza Order Detail Variables
     public static int PIZZA_ID;
     public static String PIZZA_NAME;
-    public static String PIZZA_SIZE_NAME ;
     public static String PIZZA_PRICE ;
     public static String PIZZA_CONTENT ;
     public static String PIZZA_CATEGORY ;
@@ -31,7 +43,5 @@ public class PizzaConstants {
     public static String CRUST_ID ;
     public static int CRUST_TOTAL_BILL ;
 
-    public static String REGULAR_PRICE ;
-    public static String MEDIUM_PRICE;
-    public static String LARGE_PRICE ;
+
 }
