@@ -14,10 +14,11 @@ public class PizzaDetailsModel {
     private String updated_at;
 
     private String topping_name;
+    private boolean topping_button_flag ;
+
     private String pizza_price ;
 
     private boolean crust_button_flag ;
-    private boolean topping_button_flag ;
 
     public PizzaDetailsModel(int id, String name, String url, String regular, String medium, String large,
                              String content, String category, String veg, String created_at, String updated_at) {
@@ -33,6 +34,7 @@ public class PizzaDetailsModel {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+
 
     public boolean isCrust_button_flag() {
         return crust_button_flag;

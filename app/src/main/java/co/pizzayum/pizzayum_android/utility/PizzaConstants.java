@@ -15,12 +15,16 @@ public class PizzaConstants {
     public static int SIZE_ENABLE_POSITION = 0;
 
     public static String PIZZA_CRUST_PRICE = "0" ;
+    public static String PIZZA_TOPPING_PRICE = "0" ;
     public static String PIZZA_CRUST_ID ;
     public static String REGULAR_PRICE = "0" ;
     public static String MEDIUM_PRICE;
     public static String LARGE_PRICE ;
     public static String SELECTED_PIZZA_PRICE = REGULAR_PRICE;
     public static String SELECTED_PIZZA_SIZE = "Reguler";
+    public static boolean EXTRA_CHEESE_ENABLE = false;
+    public static String EXTRA_CHEESE_PRICE = "0";
+
 
     public static SelectedCatResponse[] getResult ;
 
