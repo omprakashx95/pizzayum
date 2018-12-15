@@ -22,12 +22,12 @@ public class ToppingSliderAdapter extends RecyclerView.Adapter<ToppingSliderAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public ImageView pizza_pic ;
+        public ImageView pizza_pic;
 
         public MyViewHolder(View view) {
             super(view);
-             name = view.findViewById(R.id.topping_label);
-             pizza_pic = view.findViewById(R.id.topping_pic);
+            name = view.findViewById(R.id.topping_label);
+            pizza_pic = view.findViewById(R.id.topping_pic);
         }
     }
 
@@ -45,11 +45,12 @@ public class ToppingSliderAdapter extends RecyclerView.Adapter<ToppingSliderAdap
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-         PizzaDetailsModel model = item_list.get(position);
-         holder.name.setText(model.getTopping_name());
-        if (model.isTopping_button_flag()){
+        PizzaDetailsModel model = item_list.get(position);
+        holder.name.setText(model.getTopping_name());
+        holder.pizza_pic.setImageDrawable(mContext.getResources().getDrawable(Integer.parseInt(model.getUrl())));
+        if (model.isTopping_button_flag()) {
             holder.name.setTextColor(Color.parseColor("#FF5733"));
-        }else {
+        } else {
             holder.name.setTextColor(Color.parseColor("#aaaaaa"));
         }
     }

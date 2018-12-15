@@ -51,10 +51,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(PizzaOrderTableModel.PRODUCT_ID, order.getProduct_id());
         values.put(PizzaOrderTableModel.PRODUCT_SIZE, order.getSize());
         values.put(PizzaOrderTableModel.PRODUCT_QUANTITY, order.getProduct_quantity());
+        values.put(PizzaOrderTableModel.PRODUCT_CAT, order.getProduct_cat());
+        values.put(PizzaOrderTableModel.PRODUCT_NAME, order.getProduct_name());
+        values.put(PizzaOrderTableModel.PRODUCT_CONTENT, order.getProduct_content());
+        values.put(PizzaOrderTableModel.CRUST_ID, order.getCrust_id());
+        values.put(PizzaOrderTableModel.CRUST_DETAILS, order.getCrust_details());
         values.put(PizzaOrderTableModel.TOPPING_ID, order.getTopping_id());
         values.put(PizzaOrderTableModel.TOPPING_DETAILS, order.getTopping_details());
         values.put(PizzaOrderTableModel.EXTRA_CHEESE, order.getExtra_cheese());
-        values.put(PizzaOrderTableModel.CRUST_ID, order.getCrust_id());
+        values.put(PizzaOrderTableModel.EXTRA_CHEESE_ID, order.getExtra_cheese_id());
         values.put(PizzaOrderTableModel.BILL, order.getBill());
 
         // insert row
@@ -75,10 +80,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(PizzaOrderTableModel.TABLE_NAME,
-                new String[]{PizzaOrderTableModel.PRODUCT_ID, PizzaOrderTableModel.PRODUCT_SIZE,
-                        PizzaOrderTableModel.PRODUCT_QUANTITY, PizzaOrderTableModel.TOPPING_ID,
-                        PizzaOrderTableModel.CRUST_ID, PizzaOrderTableModel.BILL,
-                        PizzaOrderTableModel.TOPPING_DETAILS, PizzaOrderTableModel.EXTRA_CHEESE},
+                new String[]{
+                        PizzaOrderTableModel.PRODUCT_ID,
+                        PizzaOrderTableModel.PRODUCT_SIZE,
+                        PizzaOrderTableModel.PRODUCT_QUANTITY,
+                        PizzaOrderTableModel.PRODUCT_CAT,
+                        PizzaOrderTableModel.PRODUCT_NAME,
+                        PizzaOrderTableModel.PRODUCT_CONTENT,
+                        PizzaOrderTableModel.TOPPING_ID,
+                        PizzaOrderTableModel.CRUST_ID,
+                        PizzaOrderTableModel.BILL,
+                        PizzaOrderTableModel.CRUST_DETAILS,
+                        PizzaOrderTableModel.TOPPING_DETAILS,
+                        PizzaOrderTableModel.EXTRA_CHEESE,
+                        PizzaOrderTableModel.EXTRA_CHEESE_ID
+                },
                 PizzaOrderTableModel.PRODUCT_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
@@ -90,11 +106,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_ID)),
                 cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_SIZE)),
                 cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_QUANTITY)),
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CAT)),
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_NAME)),
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CONTENT)),
+
                 cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)),
                 cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_DETAILS)),
+
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE)),
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE_ID)),
+
                 cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_ID)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE)));
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_DETAILS)),
+                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL))
+        );
 
         // close the db connection
         cursor.close();
@@ -118,11 +143,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 order.setProduct_id(cursor.getInt(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_ID)));
                 order.setSize(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_SIZE)));
                 order.setProduct_quantity(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_QUANTITY)));
-                order.setTopping_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)));
+                order.setProduct_name(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_NAME)));
+                order.setProduct_cat(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CAT)));
+                order.setProduct_content(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CONTENT)));
                 order.setCrust_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_ID)));
-                order.setBill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL)));
+                order.setCrust_details(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_DETAILS)));
+                order.setTopping_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)));
                 order.setTopping_details(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_DETAILS)));
                 order.setExtra_cheese(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE)));
+                order.setExtra_cheese_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE_ID)));
+                order.setBill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL)));
+
                 orders.add(order);
             } while (cursor.moveToNext());
         }
