@@ -14,6 +14,7 @@ public class PizzaConstants {
     public static SelectedCatResponse[] getResult;
 
     // About Pizza Order
+    public static int ID;
     public static int PIZZA_ID;
     public static String PIZZA_QUANTITY;
     public static String PIZZA_NAME;
@@ -24,6 +25,8 @@ public class PizzaConstants {
     public static String LARGE_PRICE;
     public static String SELECTED_PIZZA_PRICE = REGULAR_PRICE;
     public static String SELECTED_PIZZA_SIZE = "Reguler";
+    public static String PIZZA_BILL = "";
+
 
     public static String PIZZA_CRUST_ID;
     public static String PIZZA_CRUST_DETAILS;
@@ -35,5 +38,5 @@ public class PizzaConstants {
 
     public static String EXTRA_CHEESE_PRICE = "0";
     public static String EXTRA_CHEESE_ID = "0";
-    public static int BILL;
+    public static String BILL;
 }

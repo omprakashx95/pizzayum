@@ -1,6 +1,5 @@
 package co.pizzayum.pizzayum_android.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,8 @@ import co.pizzayum.pizzayum_android.adapters.ToppingSliderAdapter;
 import co.pizzayum.pizzayum_android.models.PizzaDetailsModel;
 import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.models.SelectedCatResponse;
-import co.pizzayum.pizzayum_android.services.Pizza;
 import co.pizzayum.pizzayum_android.utility.CustomItemClickListener;
+import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 import co.pizzayum.pizzayum_android.utility.RecyclerTouchListener;
 
@@ -50,6 +50,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     RelativeLayout cart_footer_view;
     TextView bill_view, quantity_view, counter_view;
     CheckBox extra_cheese_view;
+    TextView cart_btn_view;
 
     int item_counter = 1;
     int total_bill = 0;
@@ -58,6 +59,8 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     int extra_cheese_price = 0;
     PizzaDetailsModel extra_cheese_data;
     List<Integer> topping_pics;
+
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,18 +75,10 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         topping_model_list = new ArrayList<>();
         extra_cheese_data = new PizzaDetailsModel();
 
-        // db = new DatabaseHelper(this);
-        // order_table_model = new PizzaOrderTableModel();
-        // adding a topping slider
-        // toppingSlider();
-        // add a horizontal size slider
-        // create a dummy data for topping slider
-        // fillRecords();
-        // orderList.addAll(db.getAllOrders());
-        // extra views Initializer
-        // extraViewInitializer();
+        db = new DatabaseHelper(this);
 
         contentInitializer();
+        resetVariables();
 
         sizeSlider();
         sizeSliderData();
@@ -142,52 +137,34 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                         break;
                 }
 
-                Log.e("TOPPING Price", "Topping Price: " + PizzaConstants.PIZZA_TOPPING_PRICE);
-
                 if (m.isTopping_button_flag()) {
                     m.setTopping_button_flag(false);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
-
                     topping_price = topping_price - Integer.parseInt(PizzaConstants.PIZZA_TOPPING_PRICE);
-
-                    if (topping_price > 0){
-                        PizzaConstants.PIZZA_TOPPING_ID = String.valueOf(m.getId());}
-                    else {
-                        PizzaConstants.PIZZA_TOPPING_ID = String.valueOf("0");
-                    }
-
-
-                    Log.e("TOPPING FALSE", "\n Pizza Quantity: " + item_counter);
-                    Log.e("TOPPING FALSE", "Crust Price: " + crust_bill);
-                    Log.e("TOPPING FALSE", "Topping Price: " + topping_price);
-                    Log.e("TOPPING FALSE", "Cheese Price: " + extra_cheese_price);
-                    Log.e("TOPPING FALSE", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-                    Log.e("TOPPING FALSE", "Total Bill: " + (item_counter * total_bill));
-                    Log.e("TOPPING FALSE", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+                    logGenerator("Topping False");
                 } else {
                     m.setTopping_button_flag(true);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
-
                     topping_price = topping_price + Integer.parseInt(PizzaConstants.PIZZA_TOPPING_PRICE);
-                    Log.e("TOPPING TRUE", "\n Pizza Quantity: " + item_counter);
-                    Log.e("TOPPING TRUE", "Crust Price: " + crust_bill);
-                    Log.e("TOPPING TRUE", "Topping Price: " + topping_price);
-                    Log.e("TOPPING TRUE", "Cheese Price: " + extra_cheese_price);
-                    Log.e("TOPPING TRUE", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-                    Log.e("TOPPING TRUE", "Total Bill: " + (item_counter * total_bill));
-                    Log.e("TOPPING TRUE", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+                    logGenerator("Topping True");
                 }
 
-                PizzaConstants.PIZZA_TOPPING_CONTENT = "" ;
-                for (PizzaDetailsModel t: topping_model_list){
-                    if (t.isTopping_button_flag()){
+                PizzaConstants.PIZZA_TOPPING_CONTENT = "";
+                for (PizzaDetailsModel t : topping_model_list) {
+                    if (t.isTopping_button_flag()) {
                         PizzaConstants.PIZZA_TOPPING_CONTENT += t.getTopping_name();
                     }
                 }
 
-                Log.e("Pizza Topping","ToppingContent" + PizzaConstants.PIZZA_TOPPING_CONTENT);
+                if (topping_price > 0) {
+                    PizzaConstants.PIZZA_TOPPING_ID = String.valueOf(m.getId());
+                } else {
+                    PizzaConstants.PIZZA_TOPPING_ID = null;
+                }
+
+                Log.e("Pizza Topping", "ToppingContent" + PizzaConstants.PIZZA_TOPPING_CONTENT);
                 setFinalView();
             }
         }));
@@ -211,38 +188,62 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 }
 
                 if (m.isCrust_button_flag()) {
-                    m.setCrust_button_flag(false);
-                    crust_model_list.set(position, m);
+                    int i = 0;
+                    for (PizzaDetailsModel model : crust_model_list) {
+                        model.setCrust_button_flag(false);
+                        crust_model_list.set(i, model);
+                        i++;
+                    }
                     crust_adapter.notifyDataSetChanged();
-
-                    crust_bill = crust_bill - Integer.parseInt(PizzaConstants.PIZZA_CRUST_PRICE);
-                    Log.e("CRUST FALSE", "\n Pizza Quantity: " + item_counter);
-                    Log.e("CRUST FALSE", "Crust Price: " + crust_bill);
-                    Log.e("CRUST FALSE", "Topping Price: " + topping_price);
-                    Log.e("CRUST FALSE", "Cheese Price: " + extra_cheese_price);
-                    Log.e("CRUST FALSE", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-                    Log.e("CRUST FALSE", "Total Bill: " + (item_counter * total_bill));
-                    Log.e("CRUST FALSE", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+                    crust_bill = 0;
+                    PizzaConstants.PIZZA_CRUST_ID = null;
+                    PizzaConstants.PIZZA_CRUST_DETAILS = "0";
+                    logGenerator("CRUST FALSE");
 
                 } else {
+                    int i = 0;
+                    for (PizzaDetailsModel model : crust_model_list) {
+                        model.setCrust_button_flag(false);
+                        crust_model_list.set(i, model);
+                        i++;
+                    }
                     m.setCrust_button_flag(true);
                     crust_model_list.set(position, m);
                     crust_adapter.notifyDataSetChanged();
-
-                    crust_bill = crust_bill + Integer.parseInt(PizzaConstants.PIZZA_CRUST_PRICE);
-
-                    Log.e("CRUST TRUE", "\n Pizza Quantity: " + item_counter);
-                    Log.e("CRUST TRUE", "Crust Price: " + crust_bill);
-                    Log.e("CRUST TRUE", "Topping Price: " + topping_price);
-                    Log.e("CRUST TRUE", "Cheese Price: " + extra_cheese_price);
-                    Log.e("CRUST TRUE", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-                    Log.e("CRUST TRUE", "Total Bill: " + (item_counter * total_bill));
-                    Log.e("CRUST TRUE", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+                    crust_bill = Integer.parseInt(PizzaConstants.PIZZA_CRUST_PRICE);
+                    PizzaConstants.PIZZA_CRUST_ID = String.valueOf(m.getId());
+                    PizzaConstants.PIZZA_CRUST_DETAILS = m.getName();
+                    logGenerator("CRUST TRUE");
                 }
+
                 setFinalView();
             }
-
         }));
+    }
+
+    void resetVariables() {
+        PizzaConstants.PIZZA_QUANTITY = "1";
+        PizzaConstants.PIZZA_CRUST_ID = null;
+        PizzaConstants.PIZZA_CRUST_DETAILS = null;
+        PizzaConstants.PIZZA_CRUST_PRICE = "0";
+
+        PizzaConstants.PIZZA_TOPPING_ID = null;
+        PizzaConstants.PIZZA_TOPPING_CONTENT = null;
+        PizzaConstants.PIZZA_TOPPING_PRICE = "0";
+
+        PizzaConstants.EXTRA_CHEESE_PRICE = "0";
+        PizzaConstants.EXTRA_CHEESE_ID = null;
+        PizzaConstants.BILL = "0";
+    }
+
+    void logGenerator(String Tag) {
+        Log.e(Tag, "\n Pizza Quantity: " + item_counter);
+        Log.e(Tag, "Crust Price: " + crust_bill);
+        Log.e(Tag, "Topping Price: " + topping_price);
+        Log.e(Tag, "Cheese Price: " + extra_cheese_price);
+        Log.e(Tag, "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
+        Log.e(Tag, "Total Bill: " + (item_counter * total_bill));
+        Log.e(Tag, "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
     }
 
     void toppingPicsInitializer() {
@@ -274,18 +275,16 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
         if (checked) {
             extra_cheese_price = Integer.parseInt(PizzaConstants.EXTRA_CHEESE_PRICE);
+            PizzaConstants.EXTRA_CHEESE_ID = String.valueOf(extra_cheese_data.getId());
+            PizzaConstants.EXTRA_CHEESE_ID = String.valueOf(extra_cheese_data.getId());
+            PizzaConstants.EXTRA_CHEESE_PRICE = String.valueOf(extra_cheese_price);
         } else {
             extra_cheese_price = 0;
+            PizzaConstants.EXTRA_CHEESE_ID = null;
+            PizzaConstants.EXTRA_CHEESE_PRICE = "0";
         }
 
-        Log.e("CheckBox", "\n Pizza Quantity: " + item_counter);
-        Log.e("CheckBox", "Crust Price: " + crust_bill);
-        Log.e("CheckBox", "Topping Price: " + topping_price);
-        Log.e("CheckBox", "Cheese Price: " + extra_cheese_price);
-        Log.e("CheckBox", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-        Log.e("CheckBox", "Total Bill: " + (item_counter * total_bill));
-        Log.e("CheckBox", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
-
+        logGenerator("CheckBox");
         setFinalView();
     }
 
@@ -293,15 +292,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         item_counter++;
         counter_view.setText(String.valueOf(item_counter));
         total_bill = Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE);
-        //bill_view.setText(total_bill);
+        // bill_view.setText(total_bill);
 
-        Log.e("PLUS", "\n Pizza Quantity: " + item_counter);
-        Log.e("PLUS", "Crust Price: " + crust_bill);
-        Log.e("PLUS", "Topping Price: " + topping_price);
-        Log.e("PLUS", "Cheese Price: " + extra_cheese_price);
-        Log.e("PLUS", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-        Log.e("PLUS", "Total Bill: " + (item_counter * total_bill));
-        Log.e("PLUS", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+        logGenerator("Plus");
         setFinalView();
     }
 
@@ -309,15 +302,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         item_counter--;
         counter_view.setText(String.valueOf(item_counter));
         total_bill = Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE);
-        //bill_view.setText(item_counter * Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
+        // bill_view.setText(item_counter * Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
 
-        Log.e("MINUS", "\n Pizza Quantity: " + item_counter);
-        Log.e("MINUS", "Crust Price: " + crust_bill);
-        Log.e("MINUS", "Topping Price: " + topping_price);
-        Log.e("MINUS", "Cheese Price: " + extra_cheese_price);
-        Log.e("MINUS", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-        Log.e("MINUS", "Total Bill: " + (item_counter * total_bill));
-        Log.e("MINUS", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+        logGenerator("Minus");
         setFinalView();
     }
 
@@ -328,19 +315,14 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         crust_bill = 0;
         topping_price = 0;
 
-        Log.e("INITIALISATION", "\n Pizza Quantity: " + item_counter);
-        Log.e("INITIALISATION", "Crust Price: " + crust_bill);
-        Log.e("INITIALISATION", "Topping Price: " + topping_price);
-        Log.e("INITIALISATION", "Cheese Price: " + extra_cheese_price);
-        Log.e("INITIALISATION", "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
-        Log.e("INITIALISATION", "Total Bill: " + (item_counter * total_bill));
-        Log.e("INITIALISATION", "Total + CRUST + Topping: " + (item_counter * (total_bill + crust_bill + topping_price + extra_cheese_price)));
+        logGenerator("INITIALISATION");
         setFinalView();
     }
 
     void clickListenerInitialization() {
         plus_view.setOnClickListener(this);
         minus_view.setOnClickListener(this);
+        cart_btn_view.setOnClickListener(this);
     }
 
     void contentInitializer() {
@@ -362,6 +344,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         quantity_view = findViewById(R.id.quantity);
 
         extra_cheese_view = findViewById(R.id.checkbox);
+        cart_btn_view = findViewById(R.id.cart_btn);
     }
 
     void setFinalView() {
@@ -370,6 +353,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         bill_view.setText(temp);
         temp = item_counter + " ITEM";
         quantity_view.setText(temp);
+
+        PizzaConstants.BILL = String.valueOf(item_counter * (total_bill + crust_bill + topping_price
+                + extra_cheese_price));
     }
 
     private void sizeSlider() {
@@ -452,7 +438,6 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
     private void toppingSliderData() {
         int i = 0;
-        Log.e("Size", "Topping Pics Size: " + topping_pics.size());
         for (SelectedCatResponse a : PizzaConstants.getResult) {
             if (a.getCategory().equals("Extra Topping") && a.getName().equals("Vegetarian")) {
                 for (String s : a.getContent().split(",")) {
@@ -484,29 +469,56 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     private void createOrder() {
-//        PizzaOrderTableModel model = new PizzaOrderTableModel(
-//                113,"Medium","2",
-//                "123","tomato,potato","30","300","123");
 
-//        PizzaOrderTableModel model = new PizzaOrderTableModel(PizzaConstants.PIZZA_ID,
-//                PizzaConstants.SELECTED_PIZZA_SIZE, PizzaConstants.PIZZA_QUANTITY,
-//                PizzaConstants.PIZZA_CATEGORY, PizzaConstants.PIZZA_NAME,
-//                PizzaConstants.PIZZA_CONTENT, );
+        PizzaConstants.ID = 0 ;
+        for (PizzaOrderTableModel pizza: db.getAllOrders()){
+            PizzaConstants.ID = pizza.getId();
+            Log.e("Count","Count Log: "+PizzaConstants.ID);
+        }
+        PizzaConstants.ID++ ;
 
-        //long id = db.insertOrder(model);
-        //printAllOrders();
+        PizzaOrderTableModel model = new PizzaOrderTableModel(
+                PizzaConstants.ID,
+                PizzaConstants.PIZZA_ID,
+                PizzaConstants.SELECTED_PIZZA_SIZE,
+                PizzaConstants.PIZZA_QUANTITY,
+                PizzaConstants.PIZZA_CATEGORY,
+                PizzaConstants.PIZZA_NAME,
+                PizzaConstants.PIZZA_CONTENT,
+                String.valueOf(total_bill),
+
+                PizzaConstants.PIZZA_TOPPING_ID,
+                PizzaConstants.PIZZA_TOPPING_CONTENT,
+                String.valueOf(topping_price),
+
+                PizzaConstants.EXTRA_CHEESE_ID,
+                PizzaConstants.EXTRA_CHEESE_PRICE,
+
+                PizzaConstants.PIZZA_CRUST_ID,
+                PizzaConstants.PIZZA_CRUST_DETAILS,
+                String.valueOf(crust_bill),
+
+                PizzaConstants.BILL);
+        long id = db.insertOrder(model);
+        printAllOrders();
     }
 
     private void printAllOrders() {
-//        List<PizzaOrderTableModel> modelList =  db.getAllOrders();
-//        for(int i = 0 ; i< modelList.size(); i++ ){
-//            PizzaOrderTableModel model = modelList.get(i);
-//            Log.e("TABLE RECORD ","RECORD : "+i+" ID: "+model.getProduct_id()
-//                    + " Size: "+model.getSize()+ " Quantity: "+model.getProduct_quantity()
-//                    + " ToppingId: "+model.getTopping_id()+" Topping Details "+model.getTopping_details()
-//                    + " Extra Cheese: "+model.getExtra_cheese()+ " Bill "+ model.getBill()
-//                    + " Crust Id "+model.getCrust_id());
-//        }
+        Log.e("Tag", "get values");
+        List<PizzaOrderTableModel> modelList = db.getAllOrders();
+        for (int i = 0; i < modelList.size(); i++) {
+            PizzaOrderTableModel model = modelList.get(i);
+            Log.e("TABLE RECORD ", "unique id : " + model.getId() + " P. ID: " + model.getProduct_id()
+                    + " Size: " + model.getSize() + " Quantity: " + model.getProduct_quantity()
+                    + " Cat: " + model.getProduct_cat() + " Name: " + model.getProduct_name()
+                    + " Content: " + model.getProduct_content()
+                    + " ToppingId: " + model.getTopping_id() + " Topping Details " + model.getTopping_details()
+                    + " Extra Cheese Id: " + model.getExtra_cheese_id()
+                    + " Extra Cheese Price: " + model.getExtra_cheese()
+                    + " Crust Id: " + model.getCrust_id()
+                    + " Crust Details: " + model.getCrust_details()
+                    + " Bill " + model.getBill());
+        }
     }
 
     @Override
@@ -517,6 +529,11 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.minus:
                 if (item_counter > 1) minusButtonClicked();
+                break;
+            case R.id.cart_btn:
+                createOrder();
+                Toast.makeText(this, "Record Added", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
     }

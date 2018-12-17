@@ -48,16 +48,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(PizzaOrderTableModel.ID, order.getId());
         values.put(PizzaOrderTableModel.PRODUCT_ID, order.getProduct_id());
         values.put(PizzaOrderTableModel.PRODUCT_SIZE, order.getSize());
         values.put(PizzaOrderTableModel.PRODUCT_QUANTITY, order.getProduct_quantity());
         values.put(PizzaOrderTableModel.PRODUCT_CAT, order.getProduct_cat());
         values.put(PizzaOrderTableModel.PRODUCT_NAME, order.getProduct_name());
         values.put(PizzaOrderTableModel.PRODUCT_CONTENT, order.getProduct_content());
+        values.put(PizzaOrderTableModel.PIZZA_BILL, order.getPizza_bill());
         values.put(PizzaOrderTableModel.CRUST_ID, order.getCrust_id());
         values.put(PizzaOrderTableModel.CRUST_DETAILS, order.getCrust_details());
+        values.put(PizzaOrderTableModel.CRUST_BILL, order.getCrust_bill());
         values.put(PizzaOrderTableModel.TOPPING_ID, order.getTopping_id());
         values.put(PizzaOrderTableModel.TOPPING_DETAILS, order.getTopping_details());
+        values.put(PizzaOrderTableModel.TOPPING_BILL, order.getTopping_bill());
         values.put(PizzaOrderTableModel.EXTRA_CHEESE, order.getExtra_cheese());
         values.put(PizzaOrderTableModel.EXTRA_CHEESE_ID, order.getExtra_cheese_id());
         values.put(PizzaOrderTableModel.BILL, order.getBill());
@@ -75,58 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public PizzaOrderTableModel getOrder(long id) {
-        // get readable database as we are not inserting anything
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(PizzaOrderTableModel.TABLE_NAME,
-                new String[]{
-                        PizzaOrderTableModel.PRODUCT_ID,
-                        PizzaOrderTableModel.PRODUCT_SIZE,
-                        PizzaOrderTableModel.PRODUCT_QUANTITY,
-                        PizzaOrderTableModel.PRODUCT_CAT,
-                        PizzaOrderTableModel.PRODUCT_NAME,
-                        PizzaOrderTableModel.PRODUCT_CONTENT,
-                        PizzaOrderTableModel.TOPPING_ID,
-                        PizzaOrderTableModel.CRUST_ID,
-                        PizzaOrderTableModel.BILL,
-                        PizzaOrderTableModel.CRUST_DETAILS,
-                        PizzaOrderTableModel.TOPPING_DETAILS,
-                        PizzaOrderTableModel.EXTRA_CHEESE,
-                        PizzaOrderTableModel.EXTRA_CHEESE_ID
-                },
-                PizzaOrderTableModel.PRODUCT_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        // prepare note object
-        PizzaOrderTableModel ORDER = new PizzaOrderTableModel(
-                cursor.getInt(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_ID)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_SIZE)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_QUANTITY)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CAT)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_NAME)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CONTENT)),
-
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_DETAILS)),
-
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE_ID)),
-
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_ID)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_DETAILS)),
-                cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL))
-        );
-
-        // close the db connection
-        cursor.close();
-
-        return ORDER;
-    }
-
     public List<PizzaOrderTableModel> getAllOrders() {
         List<PizzaOrderTableModel> orders = new ArrayList<>();
 
@@ -140,18 +92,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 PizzaOrderTableModel order = new PizzaOrderTableModel();
+                order.setId(cursor.getInt(cursor.getColumnIndex(PizzaOrderTableModel.ID)));
                 order.setProduct_id(cursor.getInt(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_ID)));
                 order.setSize(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_SIZE)));
                 order.setProduct_quantity(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_QUANTITY)));
                 order.setProduct_name(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_NAME)));
                 order.setProduct_cat(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CAT)));
                 order.setProduct_content(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PRODUCT_CONTENT)));
+                order.setPizza_bill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.PIZZA_BILL)));
+
                 order.setCrust_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_ID)));
                 order.setCrust_details(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_DETAILS)));
+                order.setCrust_bill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_BILL)));
+
                 order.setTopping_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)));
                 order.setTopping_details(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_DETAILS)));
+                order.setTopping_bill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_BILL)));
+
                 order.setExtra_cheese(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE)));
                 order.setExtra_cheese_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.EXTRA_CHEESE_ID)));
+
                 order.setBill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.BILL)));
 
                 orders.add(order);
@@ -169,7 +129,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + PizzaOrderTableModel.TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-
         int count = cursor.getCount();
         cursor.close();
 
@@ -190,8 +149,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteOrder(PizzaOrderTableModel note) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(PizzaOrderTableModel.TABLE_NAME, PizzaOrderTableModel.PRODUCT_ID + " = ?",
-                new String[]{String.valueOf(note.getProduct_id())});
+        db.delete(PizzaOrderTableModel.TABLE_NAME, PizzaOrderTableModel.ID + " = ?",
+                new String[]{String.valueOf(note.getId())});
         db.close();
     }
 
