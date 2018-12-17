@@ -14,6 +14,7 @@ public class PizzaOrderTableModel {
     public static final String PIZZA_BILL = "pizza_total";
 
     public static final String TOPPING_ID = "topping_id";
+    public static final String TOPPING_COUNTER = "topping_counter";
     public static final String TOPPING_DETAILS = "topping_details";
     public static final String TOPPING_BILL = "topping_price";
 
@@ -34,6 +35,7 @@ public class PizzaOrderTableModel {
     private String pizza_bill = "0";
 
     private String topping_id;
+    private String topping_counter;
     private String topping_details;
     private String topping_bill = "0";
 
@@ -62,6 +64,7 @@ public class PizzaOrderTableModel {
                     + CRUST_DETAILS + " TEXT ,"
                     + CRUST_BILL + " TEXT ,"
                     + TOPPING_ID + " TEXT ,"
+                    + TOPPING_COUNTER + " TEXT ,"
                     + TOPPING_DETAILS + " TEXT ,"
                     + TOPPING_BILL + " TEXT ,"
                     + EXTRA_CHEESE + " TEXT ,"
@@ -72,7 +75,8 @@ public class PizzaOrderTableModel {
     public PizzaOrderTableModel(int id, int product_id, String size, String product_quantity,
                                 String product_cat,
                                 String product_name, String product_content, String pizza_bill,
-                                String topping_id, String topping_details, String topping_bill,
+                                String topping_id, String topping_counter, String topping_details,
+                                String topping_bill,
                                 String extra_cheese_id, String extra_cheese, String crust_id,
                                 String crust_details, String crust_bill, String bill) {
         this.id = id;
@@ -85,6 +89,7 @@ public class PizzaOrderTableModel {
         this.pizza_bill = pizza_bill;
 
         this.topping_id = topping_id;
+        this.topping_counter = topping_counter;
         this.topping_details = topping_details;
         this.topping_bill = topping_bill;
 
@@ -99,6 +104,14 @@ public class PizzaOrderTableModel {
     }
 
     public PizzaOrderTableModel() {
+    }
+
+    public String getTopping_counter() {
+        return topping_counter;
+    }
+
+    public void setTopping_counter(String topping_counter) {
+        this.topping_counter = topping_counter;
     }
 
     public int getId() {

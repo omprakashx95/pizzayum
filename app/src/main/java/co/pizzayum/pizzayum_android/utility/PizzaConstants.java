@@ -25,8 +25,6 @@ public class PizzaConstants {
     public static String LARGE_PRICE;
     public static String SELECTED_PIZZA_PRICE = REGULAR_PRICE;
     public static String SELECTED_PIZZA_SIZE = "Reguler";
-    public static String PIZZA_BILL = "";
-
 
     public static String PIZZA_CRUST_ID;
     public static String PIZZA_CRUST_DETAILS;

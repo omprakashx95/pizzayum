@@ -60,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(PizzaOrderTableModel.CRUST_DETAILS, order.getCrust_details());
         values.put(PizzaOrderTableModel.CRUST_BILL, order.getCrust_bill());
         values.put(PizzaOrderTableModel.TOPPING_ID, order.getTopping_id());
+        values.put(PizzaOrderTableModel.TOPPING_COUNTER, order.getTopping_counter());
         values.put(PizzaOrderTableModel.TOPPING_DETAILS, order.getTopping_details());
         values.put(PizzaOrderTableModel.TOPPING_BILL, order.getTopping_bill());
         values.put(PizzaOrderTableModel.EXTRA_CHEESE, order.getExtra_cheese());
@@ -106,6 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 order.setCrust_bill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.CRUST_BILL)));
 
                 order.setTopping_id(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_ID)));
+                order.setTopping_counter(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_COUNTER)));
                 order.setTopping_details(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_DETAILS)));
                 order.setTopping_bill(cursor.getString(cursor.getColumnIndex(PizzaOrderTableModel.TOPPING_BILL)));
 
@@ -141,10 +143,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(PizzaOrderTableModel.PRODUCT_QUANTITY, note.getProduct_quantity());
+        values.put(PizzaOrderTableModel.PIZZA_BILL, note.getPizza_bill());
+        values.put(PizzaOrderTableModel.BILL, note.getBill());
 
         // updating row
-        return db.update(PizzaOrderTableModel.TABLE_NAME, values, PizzaOrderTableModel.PRODUCT_ID + " = ?",
-                new String[]{String.valueOf(note.getProduct_id())});
+        return db.update(PizzaOrderTableModel.TABLE_NAME, values, PizzaOrderTableModel.ID + " = ?",
+                new String[]{String.valueOf(note.getId())});
     }
 
     public void deleteOrder(PizzaOrderTableModel note) {

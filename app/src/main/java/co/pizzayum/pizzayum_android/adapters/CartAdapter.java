@@ -30,7 +30,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     private List<PizzaOrderTableModel> pizzaDetailsModelList;
     private int counter_value = 0;
     OnDataChangeListener mOnDataChangeListener;
-
+    DatabaseHelper db ;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, content, item_total, pizza_size;
         public ImageView thumbnail;
@@ -67,6 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public CartAdapter(Context mContext, List<PizzaOrderTableModel> pizzaDetailsModelList) {
         this.mContext = mContext;
         this.pizzaDetailsModelList = pizzaDetailsModelList;
+        db = new DatabaseHelper(mContext);
     }
 
     @Override
@@ -109,6 +110,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 model.setProduct_quantity(String.valueOf(count));
                 model.setBill(updated_bill);
                 pizzaDetailsModelList.set(position, model);
+                db.updateOrder(model);
 
                 PizzaOrderTableModel m = pizzaDetailsModelList.get(position);
                 holder.counter.setText(m.getProduct_quantity());
@@ -134,7 +136,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     model.setProduct_quantity(String.valueOf(count));
                     model.setBill(updated_bill);
                     pizzaDetailsModelList.set(position, model);
-
+                    db.updateOrder(model);
                     PizzaOrderTableModel m = pizzaDetailsModelList.get(position);
                     holder.counter.setText(m.getProduct_quantity());
                     holder.item_total.setText(mContext.getString(R.string.Rs) + m.getBill());
@@ -143,7 +145,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         mOnDataChangeListener.onDataChanged(pizzaDetailsModelList.size());
                     }
                 } else {
-                    DatabaseHelper db = new DatabaseHelper(mContext);
+
                     db.deleteOrder(model);
                     pizzaDetailsModelList.remove(position);
                     notifyDataSetChanged();

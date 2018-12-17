@@ -57,6 +57,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     int crust_bill = 0;
     int topping_price = 0;
     int extra_cheese_price = 0;
+    int topping_counter = 0;
     PizzaDetailsModel extra_cheese_data;
     List<Integer> topping_pics;
 
@@ -138,12 +139,14 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 }
 
                 if (m.isTopping_button_flag()) {
+                    topping_counter --;
                     m.setTopping_button_flag(false);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
                     topping_price = topping_price - Integer.parseInt(PizzaConstants.PIZZA_TOPPING_PRICE);
                     logGenerator("Topping False");
                 } else {
+                    topping_counter ++;
                     m.setTopping_button_flag(true);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
@@ -222,6 +225,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     void resetVariables() {
+        PizzaConstants.SIZE_ENABLE_POSITION = 0;
         PizzaConstants.PIZZA_QUANTITY = "1";
         PizzaConstants.PIZZA_CRUST_ID = null;
         PizzaConstants.PIZZA_CRUST_DETAILS = null;
@@ -237,8 +241,10 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     void logGenerator(String Tag) {
+        Log.e(Tag, "----------------------------------------------------------------------------");
         Log.e(Tag, "\n Pizza Quantity: " + item_counter);
         Log.e(Tag, "Crust Price: " + crust_bill);
+        Log.e(Tag, "Topping Counter: " + topping_counter);
         Log.e(Tag, "Topping Price: " + topping_price);
         Log.e(Tag, "Cheese Price: " + extra_cheese_price);
         Log.e(Tag, "Selected Pizza Price: " + Integer.parseInt(PizzaConstants.SELECTED_PIZZA_PRICE));
@@ -488,6 +494,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 String.valueOf(total_bill),
 
                 PizzaConstants.PIZZA_TOPPING_ID,
+                String.valueOf(topping_counter),
                 PizzaConstants.PIZZA_TOPPING_CONTENT,
                 String.valueOf(topping_price),
 

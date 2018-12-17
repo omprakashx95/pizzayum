@@ -19,10 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0d118a7-24ce-4775-8fa4-b84174988eb5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/PaymentOptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/cart_row.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/payment_options.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -31,16 +27,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/fragments/CartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/fragments/CartFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cart_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cart_frag.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/history_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/history_frag.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_details.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,36 +59,75 @@
       <file leaf-file-name="CartFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/fragments/CartFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="138" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="210">
+              <caret line="150" column="58" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
               <folding>
-                <element signature="e#2566#2713#0" expanded="true" />
-                <element signature="e#2712#2713#0" expanded="true" />
-                <element signature="e#3256#3402#0" expanded="true" />
-                <element signature="e#3401#3402#0" expanded="true" />
-                <element signature="e#3868#3904#0" expanded="true" />
+                <element signature="e#2673#2820#0" expanded="true" />
+                <element signature="e#2819#2820#0" expanded="true" />
+                <element signature="e#3363#3509#0" expanded="true" />
+                <element signature="e#3508#3509#0" expanded="true" />
+                <element signature="e#3975#4011#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pizza.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/services/Pizza.java">
+      <file leaf-file-name="PizzaConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="50" selection-start-line="49" selection-start-column="8" selection-end-line="50" />
+            <state relative-caret-position="119">
+              <caret line="10" selection-start-line="10" selection-end-line="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cart_frag.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cart_frag.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+      <file leaf-file-name="CartAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="57" column="44" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="44" />
+            <state relative-caret-position="306">
+              <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
+              <folding>
+                <element signature="e#3477#3508#0" expanded="true" />
+                <element signature="e#3944#5058#0" expanded="true" />
+                <element signature="e#4828#4859#0" expanded="true" />
+                <element signature="e#5057#5058#0" expanded="true" />
+                <element signature="e#5141#6702#0" expanded="true" />
+                <element signature="e#6099#6130#0" expanded="true" />
+                <element signature="e#6701#6702#0" expanded="true" />
+                <element signature="e#6758#6958#0" expanded="true" />
+                <element signature="e#6957#6958#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemDetails.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="227" column="23" selection-start-line="227" selection-start-column="23" selection-end-line="227" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PizzaOrderTableModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="e#4193#4194#0" expanded="true" />
+                <element signature="e#4231#4232#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2395,15 +2427,15 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cart_row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/history_frag.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/PatmentOptions.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/PaymentOptions.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/payment_options.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cart_frag.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/fragments/CartFragment.java" />
       </list>
     </option>
@@ -2419,6 +2451,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2481,9 +2516,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2624,7 +2656,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32843137" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2633,23 +2664,23 @@
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50075644" side_tool="true" weight="0.2647059" />
-      <window_info anchor="right" id="Preview" order="5" weight="0.30559757" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.35130718" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32843137" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32843137" />
       <window_info anchor="bottom" x="646" y="343" width="74" height="42" id="Logcat" order="7" type="FLOATING" weight="0.30703014" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25567323" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.24508321" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.0" />
       <window_info anchor="right" id="Gradle" order="6" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.501634" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.30559757" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -2674,7 +2705,6 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.2647059" />
       <window_info anchor="right" id="Preview" order="5" weight="0.30559757" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32711622" />
       <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" weight="0.32980332" />
       <window_info anchor="bottom" x="646" y="343" width="74" height="42" id="Logcat" order="10" type="FLOATING" weight="0.30703014" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32843137" />
@@ -2687,6 +2717,7 @@
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32711622" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
     </layout-to-restore>
   </component>
@@ -3008,78 +3039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
-          <folding>
-            <element signature="e#3894#3895#0" expanded="true" />
-            <element signature="e#3919#3920#0" expanded="true" />
-            <element signature="e#3952#3953#0" expanded="true" />
-            <element signature="e#3980#3981#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1309">
-          <caret line="212" column="52" selection-start-line="212" selection-start-column="52" selection-end-line="212" selection-end-column="52" />
-          <folding>
-            <element signature="e#3193#3971#0" expanded="true" />
-            <element signature="e#3970#3971#0" expanded="true" />
-            <element signature="e#4096#6216#0" expanded="true" />
-            <element signature="e#6215#6216#0" expanded="true" />
-            <element signature="e#6337#8414#0" expanded="true" />
-            <element signature="e#8413#8414#0" expanded="true" />
-            <element signature="e#12105#12284#0" />
-            <element signature="e#12290#13096#0" />
-            <element signature="e#13212#13234#0" expanded="true" />
-            <element signature="e#13584#14076#0" />
-            <element signature="e#14082#14691#0" />
-            <element signature="e#14697#15356#0" />
-            <element signature="e#15362#16113#0" />
-            <element signature="e#16119#16802#0" />
-            <element signature="e#16808#17699#0" />
-            <element signature="e#17705#18161#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1627">
-          <caret line="159" column="19" selection-start-line="159" selection-start-column="19" selection-end-line="159" selection-end-column="19" />
-          <folding>
-            <element signature="e#3411#3442#0" expanded="true" />
-            <element signature="e#3878#5015#0" expanded="true" />
-            <element signature="e#4785#4816#0" expanded="true" />
-            <element signature="e#5014#5015#0" expanded="true" />
-            <element signature="e#5059#6608#0" expanded="true" />
-            <element signature="e#6042#6073#0" expanded="true" />
-            <element signature="e#6607#6608#0" expanded="true" />
-            <element signature="e#6680#6838#0" expanded="true" />
-            <element signature="e#6837#6838#0" expanded="true" />
-            <element signature="e#6394#6395#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/PaymentOptions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -3112,28 +3071,78 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
+        <state relative-caret-position="969">
           <caret line="57" column="44" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/services/Pizza.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="391">
           <caret line="50" selection-start-line="49" selection-start-column="8" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/models/PizzaOrderTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#4193#4194#0" expanded="true" />
+            <element signature="e#4231#4232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/adapters/CartAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
+          <folding>
+            <element signature="e#3477#3508#0" expanded="true" />
+            <element signature="e#3944#5058#0" expanded="true" />
+            <element signature="e#4828#4859#0" expanded="true" />
+            <element signature="e#5057#5058#0" expanded="true" />
+            <element signature="e#5141#6702#0" expanded="true" />
+            <element signature="e#6099#6130#0" expanded="true" />
+            <element signature="e#6701#6702#0" expanded="true" />
+            <element signature="e#6758#6958#0" expanded="true" />
+            <element signature="e#6957#6958#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/utility/PizzaConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" selection-start-line="10" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/activities/ItemDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="227" column="23" selection-start-line="227" selection-start-column="23" selection-end-line="227" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/pizzayum/pizzayum_android/fragments/CartFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
+        <state relative-caret-position="210">
+          <caret line="150" column="58" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
           <folding>
-            <element signature="e#2566#2713#0" expanded="true" />
-            <element signature="e#2712#2713#0" expanded="true" />
-            <element signature="e#3256#3402#0" expanded="true" />
-            <element signature="e#3401#3402#0" expanded="true" />
-            <element signature="e#3868#3904#0" expanded="true" />
+            <element signature="e#2673#2820#0" expanded="true" />
+            <element signature="e#2819#2820#0" expanded="true" />
+            <element signature="e#3363#3509#0" expanded="true" />
+            <element signature="e#3508#3509#0" expanded="true" />
+            <element signature="e#3975#4011#0" expanded="true" />
           </folding>
         </state>
       </provider>
