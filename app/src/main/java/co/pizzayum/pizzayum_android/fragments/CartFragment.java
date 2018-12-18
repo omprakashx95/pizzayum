@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,12 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,22 +23,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import co.pizzayum.pizzayum_android.R;
 import co.pizzayum.pizzayum_android.adapters.CartAdapter;
-import co.pizzayum.pizzayum_android.adapters.SizeSliderAdapter;
-import co.pizzayum.pizzayum_android.models.PizzaDetailsModel;
 import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
 
@@ -52,8 +44,8 @@ public class CartFragment extends Fragment {
     CartAdapter cart_adapter;
     DatabaseHelper db;
     TextView total_bill;
-    LinearLayout proceed_payment_view;
-
+    RelativeLayout proceed_payment_view;
+    ProgressBar progress_bar_view ;
     public static CartFragment newInstance() {
         return new CartFragment();
     }
@@ -70,6 +62,8 @@ public class CartFragment extends Fragment {
         total_bill = view.findViewById(R.id.total_bill);
         cart_model_list = new ArrayList<>();
         cart_slider_view = view.findViewById(R.id.recycler_view);
+        progress_bar_view = view.findViewById(R.id.progress_bar);
+        progress_bar_view.setVisibility(View.INVISIBLE);
         sizeSlider();
 
         proceed_payment_view = view.findViewById(R.id.proceed_payment);
@@ -118,11 +112,8 @@ public class CartFragment extends Fragment {
     }
 
     String requestJsonGenerator() {
-        //String s = "[{\"productID\":1,\"size\":\"regular\",\"quantity\":2,\"crust_id\":29,\"topping_id\":30,
-        // \"topping_detail\":\"Tomato,Onion\",\"topping_qty\":2,
-        // \"extera_cheese\":30}]";
         String temp = "[";
-        for (int i = 0 ; i < db.getAllOrders().size(); i++) {
+        for (int i = 0; i < db.getAllOrders().size(); i++) {
             PizzaOrderTableModel model = db.getAllOrders().get(i);
             temp += "{";
             temp += "\"productID\":" + model.getProduct_id();
@@ -130,25 +121,23 @@ public class CartFragment extends Fragment {
             temp += ",\"quantity\":" + model.getProduct_quantity();
 
             if (nullChecker(model.getCrust_id()))
-                temp += ",\"crust_id\":" + model.getCrust_id() ;
+                temp += ",\"crust_id\":" + model.getCrust_id();
             if (nullChecker(model.getTopping_id())) {
-                temp += ",\"topping_id\":" + model.getTopping_id() ;
+                temp += ",\"topping_id\":" + model.getTopping_id();
                 temp += ",\"topping_detail\":\"" + model.getTopping_details() + "\"";
                 temp += ",\"topping_qty\":" + model.getTopping_counter();
             }
             if (nullChecker(model.getTopping_id()))
-                temp += ",\"extera_cheese\":" + model.getExtra_cheese_id() ;
+                temp += ",\"extera_cheese\":" + model.getExtra_cheese_id();
 
-            if (i == db.getAllOrders().size()-1){
+            if (i == db.getAllOrders().size() - 1) {
                 temp += "}";
-            }else{
+            } else {
                 temp += "},";
             }
         }
         temp += "]";
 
-     // [{"productID":1,"size":"regular","quantity":2,"crust_id":29},{"productID":1,"size":"large","quantity":2}]
-    //  [{"productID":1,"size":"Reguler","quantity":2},{"productID":1,"size":"Reguler","quantity":1}]
         Log.e("generated", "Created Record: " + temp);
         return temp;
     }
@@ -172,7 +161,7 @@ public class CartFragment extends Fragment {
             jsonBody.put("email", "rishabh19910623@gmail.com");
             final String requestBody = jsonBody.toString();
             Log.e("Log", "auth: " + requestBody);
-
+            progress_bar_view.setVisibility(View.VISIBLE);
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,        // Post method
                     url,
@@ -180,12 +169,14 @@ public class CartFragment extends Fragment {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            progress_bar_view.setVisibility(View.INVISIBLE);
                             Log.e("Response", "Response: " + response.toString());
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progress_bar_view.setVisibility(View.INVISIBLE);
                             Log.e("Response", "Error: " + error);
                         }
                     }) {

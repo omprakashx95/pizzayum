@@ -54,14 +54,12 @@
                 android:fontFamily="@font/athiti"
                 />
         </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/proceed_payment"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary"
-            android:gravity="center">
+            android:background="@color/colorPrimary">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +67,14 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:fontFamily="@font/athiti"/>
-        </LinearLayout>
+                android:fontFamily="@font/athiti"
+                android:layout_centerInParent="true"
+                />
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
