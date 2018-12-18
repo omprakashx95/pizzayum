@@ -127,7 +127,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 PizzaDetailsModel m = topping_model_list.get(position);
 
                 switch (PizzaConstants.SELECTED_PIZZA_SIZE) {
-                    case "Reguler":
+                    case "Regular":
                         PizzaConstants.PIZZA_TOPPING_PRICE = m.getRegular();
                         break;
                     case "Medium":
@@ -179,7 +179,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 PizzaDetailsModel m = crust_model_list.get(position);
 
                 switch (PizzaConstants.SELECTED_PIZZA_SIZE) {
-                    case "Reguler":
+                    case "Regular":
                         PizzaConstants.PIZZA_CRUST_PRICE = m.getRegular();
                         break;
                     case "Medium":
@@ -268,7 +268,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         boolean checked = extra_cheese_view.isChecked();
 
         switch (PizzaConstants.SELECTED_PIZZA_SIZE) {
-            case "Reguler":
+            case "Regular":
                 PizzaConstants.EXTRA_CHEESE_PRICE = extra_cheese_data.getRegular();
                 break;
             case "Medium":
@@ -377,7 +377,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
     private void sizeSliderData() {
         PizzaDetailsModel model = new PizzaDetailsModel();
-        model.setName("Reguler");
+        model.setName("Regular");
         model.setPizza_price(PizzaConstants.REGULAR_PRICE);
         size_model_list.add(model);
 

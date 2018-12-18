@@ -139,7 +139,8 @@ public class CartFragment extends Fragment {
         temp += "]";
 
         Log.e("generated", "Created Record: " + temp);
-        return temp;
+         return temp;
+        // return "[{\"productID\": 1,\"size\":\"regular\",\"quantity\":2}]";
     }
 
     boolean nullChecker(String a) {
