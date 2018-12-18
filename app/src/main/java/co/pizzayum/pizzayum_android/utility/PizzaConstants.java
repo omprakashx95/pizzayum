@@ -9,6 +9,7 @@ public class PizzaConstants {
     public static String CATEGORY_NAME;
     public static int ENABLE_POSITION = 0;
     public static int SIZE_ENABLE_POSITION = 0;
+    public static int ORDER_ID ;
 
     // Data Array
     public static SelectedCatResponse[] getResult;

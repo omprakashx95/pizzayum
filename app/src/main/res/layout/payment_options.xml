@@ -1,9 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Options"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:fontFamily="@font/athiti"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"/>
+    </android.support.v7.widget.Toolbar>
+
     <TextView
+        android:id="@+id/method_lbl"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payment Options"/>
-</android.support.constraint.ConstraintLayout>
+        android:text="Available Payment methods"
+        android:fontFamily="@font/athiti"
+        android:layout_marginLeft="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/cash_method"
+        android:layout_below="@id/method_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/cash"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:fontFamily="@font/athiti"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/dil_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deleviry Address"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/athiti"
+            android:textSize="14dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:background="#07000000"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            <ImageView
+                android:id="@+id/loc"
+                android:layout_below="@id/dil_title"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:layout_height="30dp"
+                android:src="@drawable/location_icon"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="6.5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:lineHeight="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kakadev Kanpur, Om Chauraha "
+                    android:fontFamily="@font/athiti"
+                    android:lineHeight="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_margin="10dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="17dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

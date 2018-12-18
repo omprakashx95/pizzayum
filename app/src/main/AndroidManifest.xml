@@ -13,15 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.Signup" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.ItemDetails" android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Signup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ItemDetails"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.PaymentOptions" />
+        <activity android:name=".activities.Invoice" />
 
         <meta-data
             android:name="preloaded_fonts"

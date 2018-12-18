@@ -1,5 +1,6 @@
 package co.pizzayum.pizzayum_android.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
@@ -32,9 +35,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
+import co.pizzayum.pizzayum_android.activities.PaymentOptions;
 import co.pizzayum.pizzayum_android.adapters.CartAdapter;
+import co.pizzayum.pizzayum_android.models.InvoiceModel;
+import co.pizzayum.pizzayum_android.models.OrderResponse;
 import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
+import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 
 //Our class extending fragment
 public class CartFragment extends Fragment {
@@ -171,6 +178,15 @@ public class CartFragment extends Fragment {
                         @Override
                         public void onResponse(JSONObject response) {
                             progress_bar_view.setVisibility(View.INVISIBLE);
+                            GsonBuilder gsonBuilder = new GsonBuilder();
+                            Gson gson = gsonBuilder.create();
+
+                            // assigning data in model class, we initializing this class as a array type
+                            // because the response is in array format
+                            OrderResponse model = gson.fromJson(response.toString(), OrderResponse.class);
+                            PizzaConstants.ORDER_ID = model.getOrderId();
+                            Log.e("ORDERID","ORDERID:" + model.getOrderId());
+                            getActivity().startActivity(new Intent(getActivity(), PaymentOptions.class));
                             Log.e("Response", "Response: " + response.toString());
                         }
                     },

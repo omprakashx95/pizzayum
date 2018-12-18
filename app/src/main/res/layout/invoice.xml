@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/athiti"
+            android:text="Order Invoice"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/order_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/address_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/loc"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/location_icon" />
+
+            <LinearLayout
+                android:id="@+id/user_loc"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/loc"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kakadev, Kanpur near Om Chaurha"
+                    android:textSize="12dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_below="@id/address_container"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b1e2e2e2"
+            />
+        <TextView
+            android:id="@+id/order_placed_lbl"
+            android:layout_below="@id/address_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Placed"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/athiti"
+            android:textStyle="bold"
+            android:textColor="@color/green_color"/>
+
+        <TextView
+            android:id="@+id/order_placed_time"
+            android:layout_below="@id/order_placed_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order placed on December 23, 9:42 PM by Sumit Kumar"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/athiti"
+            android:textStyle="bold"
+            android:textSize="12dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/info_container"
+        android:layout_below="@id/order_info_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BILL DETAILS"
+        android:fontFamily="@font/athiti"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/invoice_slider"
+        android:layout_below="@id/info_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/order_total"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:text="ORDER TOTAL: "
+        android:gravity="center"
+        android:fontFamily="@font/athiti"
+        android:textStyle="bold"
+        android:textSize="17dp"/>
+
+</RelativeLayout>
