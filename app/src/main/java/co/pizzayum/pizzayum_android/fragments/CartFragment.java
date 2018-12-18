@@ -118,9 +118,6 @@ public class CartFragment extends Fragment {
     }
 
     String requestJsonGenerator() {
-        //String s = "[{\"productID\":1,\"size\":\"regular\",\"quantity\":2,\"crust_id\":29,\"topping_id\":30,
-        // \"topping_detail\":\"Tomato,Onion\",\"topping_qty\":2,
-        // \"extera_cheese\":30}]";
         String temp = "[";
         for (int i = 0 ; i < db.getAllOrders().size(); i++) {
             PizzaOrderTableModel model = db.getAllOrders().get(i);
@@ -147,10 +144,9 @@ public class CartFragment extends Fragment {
         }
         temp += "]";
 
-     // [{"productID":1,"size":"regular","quantity":2,"crust_id":29},{"productID":1,"size":"large","quantity":2}]
-    //  [{"productID":1,"size":"Reguler","quantity":2},{"productID":1,"size":"Reguler","quantity":1}]
         Log.e("generated", "Created Record: " + temp);
-        return temp;
+         return temp;
+        // return "[{\"productID\": 1,\"size\":\"regular\",\"quantity\":2}]";
     }
 
     boolean nullChecker(String a) {
