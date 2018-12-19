@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class InvoiceModel{
 
 	@SerializedName("invoiceDetail")
-	private List<InvoiceDetailItem> invoiceDetail;
+	private InvoiceDetail invoiceDetail;
 
 	@SerializedName("orderDetail")
 	private List<OrderDetailItem> orderDetail;
@@ -19,11 +19,11 @@ public class InvoiceModel{
 	@SerializedName("status")
 	private String status;
 
-	public void setInvoiceDetail(List<InvoiceDetailItem> invoiceDetail){
+	public void setInvoiceDetail(InvoiceDetail invoiceDetail){
 		this.invoiceDetail = invoiceDetail;
 	}
 
-	public List<InvoiceDetailItem> getInvoiceDetail(){
+	public InvoiceDetail getInvoiceDetail(){
 		return invoiceDetail;
 	}
 

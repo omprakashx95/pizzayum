@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,7 +36,6 @@ import java.util.List;
 import co.pizzayum.pizzayum_android.R;
 import co.pizzayum.pizzayum_android.activities.PaymentOptions;
 import co.pizzayum.pizzayum_android.adapters.CartAdapter;
-import co.pizzayum.pizzayum_android.models.InvoiceModel;
 import co.pizzayum.pizzayum_android.models.OrderResponse;
 import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
@@ -134,8 +132,8 @@ public class CartFragment extends Fragment {
                 temp += ",\"topping_detail\":\"" + model.getTopping_details() + "\"";
                 temp += ",\"topping_qty\":" + model.getTopping_counter();
             }
-            if (nullChecker(model.getTopping_id()))
-                temp += ",\"extera_cheese\":" + model.getExtra_cheese_id();
+            if (nullChecker(model.getExtra_cheese_id()))
+                temp += ",\"extra_cheese\":" + model.getExtra_cheese_id();
 
             if (i == db.getAllOrders().size() - 1) {
                 temp += "}";
@@ -159,7 +157,6 @@ public class CartFragment extends Fragment {
     }
 
     void createQuote() {
-        requestJsonGenerator();
         final String authorization_value = "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI0MjNlNDg2ZTBkM2ZhNzNmNzJlNzc1NTk5YjdmZGJlZGQ3NmFkNWRhYjBiYmJiZWI1MjZmNjI0MjcwNDE3ZmQyMDliNjA1Yzc3ZDc2Y2E1In0.eyJhdWQiOiIyIiwianRpIjoiYjQyM2U0ODZlMGQzZmE3M2Y3MmU3NzU1OTliN2ZkYmVkZDc2YWQ1ZGFiMGJiYmJlYjUyNmY2MjQyNzA0MTdmZDIwOWI2MDVjNzdkNzZjYTUiLCJpYXQiOjE1NDI4NTQyMjQsIm5iZiI6MTU0Mjg1NDIyNCwiZXhwIjoxNTc0MzkwMjIzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.Q4zdNWIhiF-wpf_HmNjw01pho4QyldsQsDsb0GYIWjaxekpFqJ5s2Bb3cRPtbviIQIVTl_2vAjdNt3Dy-qVAgokY-AJXuRJlu3q_iugwUXu6VsRaYwT3-Q3zz4GWPjbzskvL_dGHE7zj3_W-wFmR-RHwI1rMtg5TK2WbP5j_dupwGBIBvl9eouVjiUxSj4LuAT1UjW7UP_dnuomiv-jPkAfGvAPPp4HSoyraOEyT7BbqIKS_BE2bKvyUBjg61UA7km-sXEgXyR6WJcYy5txnrn3T52KffGh9EvFbV_u9nnMq1tT_inAA-KkDcvVTCKFNTI7VxD_8aFAAc0SkIAdQQ-O6YLGYsVglGWKXsL_X9GkDadz5k9ZJNW-TVizy1Fb37HZgOKvx6ILN51RD2AmWr5q7VLPcFM3-W8c5Xoox2WWEbIbJIJmT8ReT4B0jy63lJCXaTNopCVZetmTv63MGUQpPKilTEOCE9dxv3lNp_qMH9Ny_1XR8eUzotnz5Athg-DMNm2a1peCCqxa8hZAD-pCiBd4lnH2U3CzOimXKiTDOAlZcUuzjpYtSAdGCtpb4PxOeFZGXzW4-USDBGLnI0mrMRwJXquqGyIeAMEtdXvHsoNguT-9r86CKPeHAfje-2_VrmE9E_wWY6KxOF6-x9UrY8NtzWNRDkWAxfT_TGas";
         String url = "http://www.pizzayum.co/api/order";
 

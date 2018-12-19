@@ -2,12 +2,17 @@ package co.pizzayum.pizzayum_android.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import co.pizzayum.pizzayum_android.R;
 import co.pizzayum.pizzayum_android.fragments.CartFragment;
@@ -24,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(listener);
+
+
+//        BottomNavigationMenuView bottomNavigationMenuView =
+//                (BottomNavigationMenuView) navigation.getChildAt(0);
+//        View v = bottomNavigationMenuView.getChildAt(3);
+//        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+//
+//        View badge = LayoutInflater.from(this)
+//                .inflate(R.layout.badge_bottom, bottomNavigationMenuView, false);
+//        itemView.addView(badge);
+
+
 
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

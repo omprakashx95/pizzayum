@@ -226,6 +226,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
     void resetVariables() {
         PizzaConstants.SIZE_ENABLE_POSITION = 0;
+        PizzaConstants.SELECTED_PIZZA_SIZE = "Regular";
         PizzaConstants.PIZZA_QUANTITY = "1";
         PizzaConstants.PIZZA_CRUST_ID = null;
         PizzaConstants.PIZZA_CRUST_DETAILS = null;
@@ -281,7 +282,6 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
         if (checked) {
             extra_cheese_price = Integer.parseInt(PizzaConstants.EXTRA_CHEESE_PRICE);
-            PizzaConstants.EXTRA_CHEESE_ID = String.valueOf(extra_cheese_data.getId());
             PizzaConstants.EXTRA_CHEESE_ID = String.valueOf(extra_cheese_data.getId());
             PizzaConstants.EXTRA_CHEESE_PRICE = String.valueOf(extra_cheese_price);
         } else {

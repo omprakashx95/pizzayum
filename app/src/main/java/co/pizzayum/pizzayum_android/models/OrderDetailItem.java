@@ -49,7 +49,7 @@ public class OrderDetailItem{
 	private String email;
 
 	@SerializedName("crust_id")
-	private Object crustId;
+	private String crustId;
 
 	public void setItem(String item){
 		this.item = item;
@@ -163,11 +163,11 @@ public class OrderDetailItem{
 		return email;
 	}
 
-	public void setCrustId(Object crustId){
+	public void setCrustId(String crustId){
 		this.crustId = crustId;
 	}
 
-	public Object getCrustId(){
+	public String getCrustId(){
 		return crustId;
 	}
 

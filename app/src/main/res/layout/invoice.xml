@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:fontFamily="@font/athiti"
-            android:text="Order Invoice"
+            android:text="Order Invoice: #12"
             android:textColor="@color/white"
             android:textSize="17dp"
             android:textStyle="bold" />
@@ -24,7 +24,7 @@
     <RelativeLayout
         android:id="@+id/order_info_container"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_below="@id/toolbar"
         android:background="@color/white">
 
@@ -57,14 +57,17 @@
                     android:text="Home"
                     android:textColor="@color/black"
                     android:fontFamily="@font/athiti"
-                    android:textSize="16dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kakadev, Kanpur near Om Chaurha"
-                    android:textSize="12dp"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/athiti"
                     />
+
             </LinearLayout>
         </LinearLayout>
         <View
@@ -82,6 +85,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="16dp"
             android:fontFamily="@font/athiti"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/green_color"/>
 
@@ -94,7 +98,19 @@
             android:layout_marginLeft="16dp"
             android:fontFamily="@font/athiti"
             android:textStyle="bold"
-            android:textSize="12dp"/>
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/token_no"
+            android:layout_below="@id/order_placed_time"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Token No: 12"
+            android:textSize="15dp"
+            android:fontFamily="@font/athiti"
+            android:textStyle="bold"
+            />
     </RelativeLayout>
 
     <TextView
@@ -112,16 +128,18 @@
         android:id="@+id/invoice_slider"
         android:layout_below="@id/info_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"/>
 
     <TextView
         android:id="@+id/order_total"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@color/colorPrimary"
         android:text="ORDER TOTAL: "
         android:gravity="center"
+        android:textColor="@color/white"
         android:fontFamily="@font/athiti"
         android:textStyle="bold"
         android:textSize="17dp"/>

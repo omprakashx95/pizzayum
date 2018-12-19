@@ -1,5 +1,6 @@
 package co.pizzayum.pizzayum_android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
-import co.pizzayum.pizzayum_android.adapters.CartAdapter;
 import co.pizzayum.pizzayum_android.adapters.InvoiceAdapter;
 import co.pizzayum.pizzayum_android.models.InvoiceModel;
 import co.pizzayum.pizzayum_android.models.OrderDetailItem;
@@ -40,13 +40,18 @@ public class Invoice extends AppCompatActivity {
     RecyclerView invoice_slider_view;
     InvoiceAdapter invoiceAdapter;
     List<OrderDetailItem> invoice_slider_data ;
+    TextView toolbar_title_view;
+    TextView token_no_view;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new DatabaseHelper(this);
         invoice_slider_data = new ArrayList<>();
         setContentView(R.layout.invoice);
+
         order_total_view = findViewById(R.id.order_total);
+        toolbar_title_view = findViewById(R.id.toolbar_title);
+        token_no_view = findViewById(R.id.token_no);
 
         sizeSlider();
         createQuote();
@@ -61,6 +66,17 @@ public class Invoice extends AppCompatActivity {
         invoice_slider_view.setItemAnimator(new DefaultItemAnimator());
         invoice_slider_view.setAdapter(invoiceAdapter);
         invoiceAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DatabaseHelper db = new DatabaseHelper(this);
+        db.clearCart();
+
+        Intent intent = new Intent(this, MainActivity.class);
+         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     void createQuote() {
@@ -86,12 +102,11 @@ public class Invoice extends AppCompatActivity {
                             GsonBuilder gsonBuilder = new GsonBuilder();
                             Gson gson = gsonBuilder.create();
 
-                            // assigning data in model class, we initializing this class as a array type
-                            // because the response is in array format
                             InvoiceModel model = gson.fromJson(response.toString(), InvoiceModel.class);
                             invoice_slider_data.addAll(model.getOrderDetail());
-                            order_total_view.setText("ORDER TOTAL: "+model.getInvoiceDetail().get(0).getOrderTotal());
-
+                            order_total_view.setText("ORDER TOTAL: "+model.getInvoiceDetail().getOrderTotal());
+                            token_no_view.setText("Token No: "+model.getOrderDetail().get(0).getTokenNo());
+                            toolbar_title_view.setText("Order Invoice: #"+model.getInvoiceDetail().getOrderId());
                             invoiceAdapter.notifyDataSetChanged();
                         }
                     },

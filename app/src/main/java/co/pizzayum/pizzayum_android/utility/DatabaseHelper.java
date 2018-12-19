@@ -158,6 +158,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void clearCart(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+PizzaOrderTableModel.TABLE_NAME);
+    }
+
     public void getTableColumnNames(SQLiteDatabase db){
         Cursor c = db.rawQuery("SELECT * FROM "+PizzaOrderTableModel.TABLE_NAME+" WHERE 0", null);
         try {
