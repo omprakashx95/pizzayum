@@ -16,7 +16,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import co.pizzayum.pizzayum_android.fragments.HomeFragment;
+import co.pizzayum.pizzayum_android.activities.MainActivity;
 import co.pizzayum.pizzayum_android.utility.AppController;
 
 /**
@@ -79,11 +79,11 @@ public class Authentication {
                         loading.dismiss();
                         if (which_request == 1 && response.contains("access_token")) {
                             Toast.makeText(activity, "MainActivity Success", Toast.LENGTH_SHORT).show();
-                            activity.startActivity(new Intent(activity, HomeFragment.class));
+                            activity.startActivity(new Intent(activity, MainActivity.class));
                             activity.finish();
                         } else if (which_request == 2 && response.contains("access_token")) {
                             Toast.makeText(activity, "Congratulations !! " + username + " Your account is created", Toast.LENGTH_SHORT).show();
-                            activity.startActivity(new Intent(activity, HomeFragment.class));
+                            activity.startActivity(new Intent(activity, MainActivity.class));
                             activity.finish();
                         } else {
                             Toast.makeText(activity, "Authentication Failed", Toast.LENGTH_SHORT).show();

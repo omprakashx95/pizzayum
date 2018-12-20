@@ -1,5 +1,6 @@
 package co.pizzayum.pizzayum_android.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +53,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         google_login = findViewById(R.id.google_login);
 
         register_button.setOnClickListener(this);
-
+        signup_url.setOnClickListener(this);
         // initialise custom fonts
         initializeCustomFonts();
     }
@@ -115,6 +116,10 @@ public class Signup extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.register_button:
                 registerUser();
+                break;
+            case R.id.signup_url:
+                startService(new Intent(this, Login.class));
+                finish();
                 break;
         }
     }

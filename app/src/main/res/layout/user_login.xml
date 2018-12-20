@@ -49,7 +49,6 @@
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="rishabh19910623@gmail.com"
                 android:textSize="16dp"/>
 
             <TextView
@@ -69,7 +68,6 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:fontFamily="@font/athiti"
-                android:text="234567"
                 android:textSize="16dp"
                 />
 
