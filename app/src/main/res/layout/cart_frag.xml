@@ -10,71 +10,149 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:fontFamily="@font/athiti"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_below="@id/action_bar"
-        android:layout_marginBottom="60dp"
+        android:layout_above="@id/h_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
-        android:id="@+id/footer"
+    <View
+        android:id="@+id/h_line"
+        android:layout_above="@id/footer_container"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
+        android:layout_height="5dp"
+        android:background="@drawable/shadow_bg"/>
+
+    <LinearLayout
         android:layout_alignParentBottom="true"
-        android:weightSum="10">
+        android:id="@+id/footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/total_bill"
-                android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:gravity="center_vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:background="#fafafafa">
+            <ImageView
+                android:id="@+id/loc"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:layout_height="30dp"
+                android:src="@drawable/location_icon"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="6.5"
                 android:layout_height="wrap_content"
-                android:text="134.00"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:fontFamily="@font/athiti"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VIEW BILL DETAILS"
-                android:textStyle="bold"
-                android:textColor="#455dfa"
-                android:textSize="12dp"
-                android:fontFamily="@font/athiti"
-                />
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Address"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:lineHeight="10dp"/>
+                <TextView
+                    android:id="@+id/delivery_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kakadev Kanpur, Om Chauraha "
+                    android:fontFamily="@font/athiti"
+                    android:lineHeight="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/address_edit_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/athiti"
+                    android:textSize="17dp"/>
+            </LinearLayout>
         </LinearLayout>
-        <RelativeLayout
-            android:id="@+id/proceed_payment"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PROCEED TO PAY"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="17dp"
-                android:fontFamily="@font/athiti"
-                android:layout_centerInParent="true"
-                />
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/total_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="134.00"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/athiti"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BILL DETAILS"
+                    android:textStyle="bold"
+                    android:textColor="#455dfa"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/athiti"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/proceed_payment"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PROCEED TO PAY"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:fontFamily="@font/athiti"
+                    android:layout_centerInParent="true"
+                    />
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
+
+
 </RelativeLayout>

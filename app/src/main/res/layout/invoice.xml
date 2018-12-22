@@ -43,7 +43,6 @@
                 android:src="@drawable/location_icon" />
 
             <LinearLayout
-                android:id="@+id/user_loc"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
