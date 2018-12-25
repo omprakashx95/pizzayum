@@ -16,7 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.models.SavedAddressResponse;
 import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
+import co.pizzayum.pizzayum_android.utility.SessionManager;
 
 //Our class extending fragment
 public class CartFragment extends Fragment implements View.OnClickListener {
@@ -60,6 +64,10 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     RelativeLayout proceed_payment_view;
     ProgressBar progress_bar_view;
     Dialog myDialog;
+    SessionManager session ;
+    RelativeLayout custom_loader_container;
+    ImageView loader_img_view;
+    RelativeLayout empty_cart_container ;
 
     public static CartFragment newInstance() {
         return new CartFragment();
@@ -73,7 +81,16 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        empty_cart_container = view.findViewById(R.id.empty_cart_container);
+        session = new SessionManager(getActivity());
         db = new DatabaseHelper(getActivity());
+
+        custom_loader_container = view.findViewById(R.id.custom_loader);
+        loader_img_view = view.findViewById(R.id.loader_view);
+        pizzaCustomLoader();
+        custom_loader_container.setVisibility(View.INVISIBLE);
+
         total_bill = view.findViewById(R.id.total_bill);
         cart_model_list = new ArrayList<>();
         cart_slider_view = view.findViewById(R.id.recycler_view);
@@ -95,6 +112,20 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         myDialog = new Dialog(getActivity());
 
         userAddress();
+
+        empty_cart_container.setVisibility(View.INVISIBLE);
+        showEmptyCart();
+    }
+
+    void showEmptyCart(){
+        if (! (db.getAllOrders().size()>0)){
+            empty_cart_container.setVisibility(View.VISIBLE);
+        }
+    }
+
+    void pizzaCustomLoader() {
+        Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotation_animation);
+        loader_img_view.startAnimation(rotation);
     }
 
     private void sizeSlider() {
@@ -110,6 +141,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         cart_adapter.setOnDataChangeListener(new CartAdapter.OnDataChangeListener() {
             public void onDataChanged(int size) {
                 setTotalBill();
+                showEmptyCart();
             }
         });
 
@@ -174,13 +206,13 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     void createQuote() {
-        final String authorization_value = "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI0MjNlNDg2ZTBkM2ZhNzNmNzJlNzc1NTk5YjdmZGJlZGQ3NmFkNWRhYjBiYmJiZWI1MjZmNjI0MjcwNDE3ZmQyMDliNjA1Yzc3ZDc2Y2E1In0.eyJhdWQiOiIyIiwianRpIjoiYjQyM2U0ODZlMGQzZmE3M2Y3MmU3NzU1OTliN2ZkYmVkZDc2YWQ1ZGFiMGJiYmJlYjUyNmY2MjQyNzA0MTdmZDIwOWI2MDVjNzdkNzZjYTUiLCJpYXQiOjE1NDI4NTQyMjQsIm5iZiI6MTU0Mjg1NDIyNCwiZXhwIjoxNTc0MzkwMjIzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.Q4zdNWIhiF-wpf_HmNjw01pho4QyldsQsDsb0GYIWjaxekpFqJ5s2Bb3cRPtbviIQIVTl_2vAjdNt3Dy-qVAgokY-AJXuRJlu3q_iugwUXu6VsRaYwT3-Q3zz4GWPjbzskvL_dGHE7zj3_W-wFmR-RHwI1rMtg5TK2WbP5j_dupwGBIBvl9eouVjiUxSj4LuAT1UjW7UP_dnuomiv-jPkAfGvAPPp4HSoyraOEyT7BbqIKS_BE2bKvyUBjg61UA7km-sXEgXyR6WJcYy5txnrn3T52KffGh9EvFbV_u9nnMq1tT_inAA-KkDcvVTCKFNTI7VxD_8aFAAc0SkIAdQQ-O6YLGYsVglGWKXsL_X9GkDadz5k9ZJNW-TVizy1Fb37HZgOKvx6ILN51RD2AmWr5q7VLPcFM3-W8c5Xoox2WWEbIbJIJmT8ReT4B0jy63lJCXaTNopCVZetmTv63MGUQpPKilTEOCE9dxv3lNp_qMH9Ny_1XR8eUzotnz5Athg-DMNm2a1peCCqxa8hZAD-pCiBd4lnH2U3CzOimXKiTDOAlZcUuzjpYtSAdGCtpb4PxOeFZGXzW4-USDBGLnI0mrMRwJXquqGyIeAMEtdXvHsoNguT-9r86CKPeHAfje-2_VrmE9E_wWY6KxOF6-x9UrY8NtzWNRDkWAxfT_TGas";
+
         String url = "http://www.pizzayum.co/api/order";
 
         try {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("data", requestJsonGenerator());
-            jsonBody.put("email", "rishabh19910623@gmail.com");
+            jsonBody.put("email", session.returnEmail());
             final String requestBody = jsonBody.toString();
             Log.e("Log", "auth: " + requestBody);
             progress_bar_view.setVisibility(View.VISIBLE);
@@ -216,7 +248,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 public java.util.Map<String, String> getHeaders() {
                     HashMap<String, String> headers = new HashMap<>();
                     headers.put("Accept", "application/json");
-                    headers.put("Authorization", authorization_value);
+                    headers.put("Authorization", session.returnToken());
                     return headers;
                 }
 
@@ -273,18 +305,18 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        myDialog.setCancelable(false);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
 
     void saveAddress(String s) {
-         final String authorization_value = "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI0MjNlNDg2ZTBkM2ZhNzNmNzJlNzc1NTk5YjdmZGJlZGQ3NmFkNWRhYjBiYmJiZWI1MjZmNjI0MjcwNDE3ZmQyMDliNjA1Yzc3ZDc2Y2E1In0.eyJhdWQiOiIyIiwianRpIjoiYjQyM2U0ODZlMGQzZmE3M2Y3MmU3NzU1OTliN2ZkYmVkZDc2YWQ1ZGFiMGJiYmJlYjUyNmY2MjQyNzA0MTdmZDIwOWI2MDVjNzdkNzZjYTUiLCJpYXQiOjE1NDI4NTQyMjQsIm5iZiI6MTU0Mjg1NDIyNCwiZXhwIjoxNTc0MzkwMjIzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.Q4zdNWIhiF-wpf_HmNjw01pho4QyldsQsDsb0GYIWjaxekpFqJ5s2Bb3cRPtbviIQIVTl_2vAjdNt3Dy-qVAgokY-AJXuRJlu3q_iugwUXu6VsRaYwT3-Q3zz4GWPjbzskvL_dGHE7zj3_W-wFmR-RHwI1rMtg5TK2WbP5j_dupwGBIBvl9eouVjiUxSj4LuAT1UjW7UP_dnuomiv-jPkAfGvAPPp4HSoyraOEyT7BbqIKS_BE2bKvyUBjg61UA7km-sXEgXyR6WJcYy5txnrn3T52KffGh9EvFbV_u9nnMq1tT_inAA-KkDcvVTCKFNTI7VxD_8aFAAc0SkIAdQQ-O6YLGYsVglGWKXsL_X9GkDadz5k9ZJNW-TVizy1Fb37HZgOKvx6ILN51RD2AmWr5q7VLPcFM3-W8c5Xoox2WWEbIbJIJmT8ReT4B0jy63lJCXaTNopCVZetmTv63MGUQpPKilTEOCE9dxv3lNp_qMH9Ny_1XR8eUzotnz5Athg-DMNm2a1peCCqxa8hZAD-pCiBd4lnH2U3CzOimXKiTDOAlZcUuzjpYtSAdGCtpb4PxOeFZGXzW4-USDBGLnI0mrMRwJXquqGyIeAMEtdXvHsoNguT-9r86CKPeHAfje-2_VrmE9E_wWY6KxOF6-x9UrY8NtzWNRDkWAxfT_TGas";
         String url = "http://www.pizzayum.co/api/address";
-
+        custom_loader_container.setVisibility(View.VISIBLE);
         try {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("address", s);
-            jsonBody.put("email", "rishabh19910623@gmail.com");
+            jsonBody.put("email", session.returnEmail());
             final String requestBody = jsonBody.toString();
             Log.e("Log", "auth: " + requestBody);
             JsonObjectRequest request = new JsonObjectRequest(
@@ -298,6 +330,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                             Gson gson = gsonBuilder.create();
                             AddressResponse address_data = gson.fromJson(response.toString(), AddressResponse.class);
                             delivery_address_view.setText(address_data.getAddress());
+
+                            custom_loader_container.setVisibility(View.INVISIBLE);
                             myDialog.dismiss();
                         }
                     },
@@ -312,7 +346,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 public java.util.Map<String, String> getHeaders() {
                     HashMap<String, String> headers = new HashMap<>();
                     headers.put("Accept", "application/json");
-                    headers.put("Authorization", authorization_value);
+                    headers.put("Authorization", session.returnToken());
                     return headers;
                 }
 
@@ -341,18 +375,13 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     void userAddress() {
 
         // loader
-        final ProgressDialog loading = new ProgressDialog(getActivity());
-        loading.setCancelable(false);
-        loading.setMessage("Processing");
-        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        loading.show();
+        custom_loader_container.setVisibility(View.VISIBLE);
 
-        final String authorization_value = "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI0MjNlNDg2ZTBkM2ZhNzNmNzJlNzc1NTk5YjdmZGJlZGQ3NmFkNWRhYjBiYmJiZWI1MjZmNjI0MjcwNDE3ZmQyMDliNjA1Yzc3ZDc2Y2E1In0.eyJhdWQiOiIyIiwianRpIjoiYjQyM2U0ODZlMGQzZmE3M2Y3MmU3NzU1OTliN2ZkYmVkZDc2YWQ1ZGFiMGJiYmJlYjUyNmY2MjQyNzA0MTdmZDIwOWI2MDVjNzdkNzZjYTUiLCJpYXQiOjE1NDI4NTQyMjQsIm5iZiI6MTU0Mjg1NDIyNCwiZXhwIjoxNTc0MzkwMjIzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.Q4zdNWIhiF-wpf_HmNjw01pho4QyldsQsDsb0GYIWjaxekpFqJ5s2Bb3cRPtbviIQIVTl_2vAjdNt3Dy-qVAgokY-AJXuRJlu3q_iugwUXu6VsRaYwT3-Q3zz4GWPjbzskvL_dGHE7zj3_W-wFmR-RHwI1rMtg5TK2WbP5j_dupwGBIBvl9eouVjiUxSj4LuAT1UjW7UP_dnuomiv-jPkAfGvAPPp4HSoyraOEyT7BbqIKS_BE2bKvyUBjg61UA7km-sXEgXyR6WJcYy5txnrn3T52KffGh9EvFbV_u9nnMq1tT_inAA-KkDcvVTCKFNTI7VxD_8aFAAc0SkIAdQQ-O6YLGYsVglGWKXsL_X9GkDadz5k9ZJNW-TVizy1Fb37HZgOKvx6ILN51RD2AmWr5q7VLPcFM3-W8c5Xoox2WWEbIbJIJmT8ReT4B0jy63lJCXaTNopCVZetmTv63MGUQpPKilTEOCE9dxv3lNp_qMH9Ny_1XR8eUzotnz5Athg-DMNm2a1peCCqxa8hZAD-pCiBd4lnH2U3CzOimXKiTDOAlZcUuzjpYtSAdGCtpb4PxOeFZGXzW4-USDBGLnI0mrMRwJXquqGyIeAMEtdXvHsoNguT-9r86CKPeHAfje-2_VrmE9E_wWY6KxOF6-x9UrY8NtzWNRDkWAxfT_TGas";
         String url = "http://www.pizzayum.co/api/user";
 
         try {
             JSONObject jsonBody = new JSONObject();
-            jsonBody.put("email", "rishabh19910623@gmail.com");
+            jsonBody.put("email", session.returnEmail());
             final String requestBody = jsonBody.toString();
             Log.e("Log", "auth: " + requestBody);
             JsonObjectRequest request = new JsonObjectRequest(
@@ -362,7 +391,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            loading.dismiss();
+                            custom_loader_container.setVisibility(View.INVISIBLE);
                             GsonBuilder gsonBuilder = new GsonBuilder();
                             Gson gson = gsonBuilder.create();
                             SavedAddressResponse address_data = gson.fromJson(response.toString(), SavedAddressResponse.class);
@@ -384,7 +413,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                 public java.util.Map<String, String> getHeaders() {
                     HashMap<String, String> headers = new HashMap<>();
                     headers.put("Accept", "application/json");
-                    headers.put("Authorization", authorization_value);
+                    headers.put("Authorization", session.returnToken());
                     return headers;
                 }
 

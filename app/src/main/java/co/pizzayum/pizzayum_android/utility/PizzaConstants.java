@@ -1,5 +1,8 @@
 package co.pizzayum.pizzayum_android.utility;
 
+import java.util.List;
+
+import co.pizzayum.pizzayum_android.models.HistorySortedModel;
 import co.pizzayum.pizzayum_android.models.SelectedCatResponse;
 
 public class PizzaConstants {
@@ -11,7 +14,8 @@ public class PizzaConstants {
     public static int SIZE_ENABLE_POSITION = 0;
     public static int ORDER_ID ;
     public static String DELIVERY_ADDRESS = null;
-
+    public static List<HistorySortedModel> history_slider_data_sorted;
+    public static int HISTORY_ROW_POSITION = 0;
     // Data Array
     public static SelectedCatResponse[] getResult;
 

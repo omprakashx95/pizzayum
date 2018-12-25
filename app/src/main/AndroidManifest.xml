@@ -17,6 +17,10 @@
         <activity android:name=".activities.Login">
 
         </activity>
+        <activity android:name=".activities.CustomLoader">
+
+        </activity>
+
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
@@ -25,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AddressManager"/>
+        <activity android:name=".activities.AddressManager" />
         <activity
             android:name=".activities.Signup"
             android:screenOrientation="portrait" />

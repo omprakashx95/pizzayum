@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:text="Set delivery location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/athiti"
-        android:textSize="16dp"
-        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +19,15 @@
         android:paddingTop="15dp"
         android:paddingRight="16dp"
         android:paddingBottom="15dp">
+
+        <TextView
+            android:text="Set delivery location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/athiti"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/username_label"
@@ -103,6 +102,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:fontFamily="@font/athiti"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textSize="15dp"/>
     </LinearLayout>
 </LinearLayout>

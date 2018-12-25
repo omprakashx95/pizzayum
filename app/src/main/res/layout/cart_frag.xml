@@ -76,6 +76,8 @@
                     android:id="@+id/delivery_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="Kakadev Kanpur, Om Chauraha "
                     android:fontFamily="@font/athiti"
                     android:lineHeight="10dp"/>
@@ -154,5 +156,9 @@
         </LinearLayout>
     </LinearLayout>
 
+    <include layout="@layout/custom_loader"/>
+
+    <include layout="@layout/empty_cart"/>
+    <!--<include layout/>-->
 
 </RelativeLayout>

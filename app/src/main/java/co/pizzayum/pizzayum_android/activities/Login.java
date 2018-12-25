@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import co.pizzayum.pizzayum_android.R;
 import co.pizzayum.pizzayum_android.services.Authentication;
+import co.pizzayum.pizzayum_android.utility.SessionManager;
 import co.pizzayum.pizzayum_android.utility.Validator;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -55,6 +56,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         login_button.setOnClickListener(this);
         signup_url.setOnClickListener(this);
+
+
     }
 
     @Override

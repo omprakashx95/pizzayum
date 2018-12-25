@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_height="110dp"
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:background="@drawable/size_slider_item_bg"
@@ -11,8 +12,8 @@
 
     <ImageView
         android:id="@+id/topping_pic"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/tomato"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"/>
@@ -24,6 +25,17 @@
         android:layout_height="wrap_content"
         android:text="TOMATO"
         android:fontFamily="@font/athiti"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_below="@id/topping_label"
+        android:id="@+id/topping_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ 40"
+        android:fontFamily="@font/athiti"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"/>
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/green_color"/>
 </RelativeLayout>

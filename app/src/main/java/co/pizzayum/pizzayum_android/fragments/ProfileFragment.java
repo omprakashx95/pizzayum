@@ -7,10 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import co.pizzayum.pizzayum_android.R;
+import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
+import co.pizzayum.pizzayum_android.utility.SessionManager;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
+
+    RelativeLayout logout_button_view;
+    SessionManager session;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -24,6 +30,19 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        logout_button_view = view.findViewById(R.id.logout_button_container);
+        session = new SessionManager(getActivity());
 
+        logout_button_view.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.logout_button_container:
+                session.logoutUser();
+                new DatabaseHelper(getActivity()).clearCart();
+                break;
+        }
     }
 }

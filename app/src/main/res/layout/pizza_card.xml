@@ -16,16 +16,65 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <LinearLayout
+                android:id="@+id/thumbnail_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:padding="5dp"
-                android:src="@drawable/pizza1" />
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/pizza1" />
+
+                <LinearLayout
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/devider"
+                    android:background="@drawable/pizza_card_btn"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/minus"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="7dp"
+                        android:src="@drawable/minus_icon"
+                        android:tint="@color/green_color" />
+
+                    <TextView
+                        android:id="@+id/counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/athiti"
+                        android:text="2"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/plus"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="7dp"
+                        android:src="@drawable/plus_icon"
+                        android:tint="@color/green_color" />
+
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/title"
@@ -33,8 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/thumbnail"
-                android:layout_toRightOf="@+id/thumbnail"
+                android:layout_toEndOf="@+id/thumbnail_container"
+                android:layout_toRightOf="@+id/thumbnail_container"
                 android:fontFamily="@font/athiti"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
@@ -47,8 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:layout_toEndOf="@+id/thumbnail"
-                android:layout_toRightOf="@+id/thumbnail"
+                android:layout_toEndOf="@+id/thumbnail_container"
+                android:layout_toRightOf="@+id/thumbnail_container"
                 android:fontFamily="@font/athiti"
                 android:maxLines="2"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -63,7 +112,7 @@
                 android:layout_below="@id/about"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/thumbnail"
+                android:layout_toRightOf="@id/thumbnail_container"
                 android:background="#e2e2e2" />
 
             <TextView
@@ -73,8 +122,8 @@
                 android:layout_below="@+id/devider"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="10dp"
-                android:layout_toEndOf="@+id/thumbnail"
-                android:layout_toRightOf="@+id/thumbnail"
+                android:layout_toEndOf="@+id/thumbnail_container"
+                android:layout_toRightOf="@+id/thumbnail_container"
                 android:fontFamily="@font/athiti"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
@@ -82,58 +131,7 @@
                 android:textColor="#12a627"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:visibility="visible"/>
-
-            <LinearLayout
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_below="@id/devider"
-                android:orientation="horizontal"
-                android:background="@drawable/pizza_card_btn"
-                android:layout_marginTop="6dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
-                android:layout_centerHorizontal="true">
-
-                <ImageView
-                    android:id="@+id/minus"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/minus_icon"
-                    android:tint="@color/green_color"
-                    android:padding="7dp"
-                    android:layout_gravity="center_vertical"
-                    >
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/counter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/athiti"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    />
-
-                <ImageView
-                    android:id="@+id/plus"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/plus_icon"
-                    android:tint="@color/green_color"
-                    android:padding="7dp"
-                    android:layout_gravity="center_vertical">
-                </ImageView>
-
-            </LinearLayout>
-
-
+                android:visibility="visible" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

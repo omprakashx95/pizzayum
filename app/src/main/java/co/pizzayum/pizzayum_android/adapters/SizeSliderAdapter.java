@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,9 +22,10 @@ public class SizeSliderAdapter extends RecyclerView.Adapter<SizeSliderAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView size, price;
-
+        RelativeLayout container ;
         public MyViewHolder(View view) {
             super(view);
+            container = view.findViewById(R.id.container);
             price = view.findViewById(R.id.pizza_price);
             size = view.findViewById(R.id.pizza_size);
         }
@@ -50,9 +52,11 @@ public class SizeSliderAdapter extends RecyclerView.Adapter<SizeSliderAdapter.My
         holder.price.setText(price_s);
         holder.size.setText(model.getName());
         if (PizzaConstants.SIZE_ENABLE_POSITION == position){
-            holder.size.setTextColor(Color.parseColor("#FF5733"));
+            holder.size.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+            holder.container.setBackgroundResource(R.drawable.size_slider_item_bg_selected);
         }else {
             holder.size.setTextColor(Color.parseColor("#aaaaaa"));
+            holder.container.setBackgroundResource(R.drawable.size_slider_item_bg);
         }
     }
 

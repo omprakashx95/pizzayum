@@ -12,18 +12,11 @@
         android:layout_weight="9"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/pizza_icon" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="35dp"
             android:background="@color/white"
             android:orientation="vertical"
@@ -38,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Username"/>
+                android:text="Username" />
 
             <EditText
                 android:id="@+id/user_name"
@@ -49,7 +42,7 @@
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/email_label"
@@ -57,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Email id"/>
+                android:text="Email id" />
 
             <EditText
                 android:id="@+id/user_email"
@@ -68,7 +61,7 @@
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/password_label"
@@ -86,9 +79,8 @@
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:fontFamily="@font/athiti"
                 android:textSize="16dp"
-                />
+                app:fontFamily="@font/athiti" />
 
             <Button
                 android:id="@+id/register_button"
@@ -101,6 +93,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/continue_with_label"
             android:layout_width="wrap_content"
@@ -110,6 +103,7 @@
             android:text="- continue with - "
             android:textSize="12dp"
             app:fontFamily="@font/athiti" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -139,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="FACEBOOK"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -164,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="GOOGLE"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
@@ -181,8 +175,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="GO BACK TO LOGIN"
             android:fontFamily="@font/athiti"
-            android:textStyle="bold"/>
+            android:text="GO BACK TO LOGIN"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

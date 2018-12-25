@@ -6,12 +6,6 @@ import com.google.gson.annotations.SerializedName;
 @Generated("com.robohorse.robopojogenerator")
 public class OrderDetailItem{
 
-	@SerializedName("item")
-	private String item;
-
-	@SerializedName("quantity")
-	private String quantity;
-
 	@SerializedName("extra_cheese")
 	private String extraCheese;
 
@@ -21,14 +15,17 @@ public class OrderDetailItem{
 	@SerializedName("created_at")
 	private String createdAt;
 
+	@SerializedName("medium")
+	private String medium;
+
+	@SerializedName("content")
+	private String content;
+
 	@SerializedName("topping_id")
-	private String toppingId;
+	private Object toppingId;
 
-	@SerializedName("token_no")
-	private String tokenNo;
-
-	@SerializedName("size")
-	private String size;
+	@SerializedName("delivery_agent")
+	private String deliveryAgent;
 
 	@SerializedName("updated_at")
 	private String updatedAt;
@@ -39,33 +36,56 @@ public class OrderDetailItem{
 	@SerializedName("price")
 	private String price;
 
-	@SerializedName("sub_total")
-	private String subTotal;
+	@SerializedName("veg")
+	private String veg;
 
-	@SerializedName("order_id")
-	private String orderId;
+	@SerializedName("id")
+	private String id;
 
 	@SerializedName("email")
 	private String email;
 
+	@SerializedName("regular")
+	private String regular;
+
 	@SerializedName("crust_id")
 	private String crustId;
 
-	public void setItem(String item){
-		this.item = item;
-	}
+	@SerializedName("item")
+	private String item;
 
-	public String getItem(){
-		return item;
-	}
+	@SerializedName("payment_mode")
+	private String paymentMode;
 
-	public void setQuantity(String quantity){
-		this.quantity = quantity;
-	}
+	@SerializedName("quantity")
+	private String quantity;
 
-	public String getQuantity(){
-		return quantity;
-	}
+	@SerializedName("large")
+	private String large;
+
+	@SerializedName("url")
+	private String url;
+
+	@SerializedName("token_no")
+	private String tokenNo;
+
+	@SerializedName("size")
+	private String size;
+
+	@SerializedName("sub_total")
+	private String subTotal;
+
+	@SerializedName("name")
+	private String name;
+
+	@SerializedName("order_total")
+	private String orderTotal;
+
+	@SerializedName("category")
+	private String category;
+
+	@SerializedName("order_id")
+	private String orderId;
 
 	public void setExtraCheese(String extraCheese){
 		this.extraCheese = extraCheese;
@@ -91,28 +111,36 @@ public class OrderDetailItem{
 		return createdAt;
 	}
 
-	public void setToppingId(String toppingId){
+	public void setMedium(String medium){
+		this.medium = medium;
+	}
+
+	public String getMedium(){
+		return medium;
+	}
+
+	public void setContent(String content){
+		this.content = content;
+	}
+
+	public String getContent(){
+		return content;
+	}
+
+	public void setToppingId(Object toppingId){
 		this.toppingId = toppingId;
 	}
 
-	public String getToppingId(){
+	public Object getToppingId(){
 		return toppingId;
 	}
 
-	public void setTokenNo(String tokenNo){
-		this.tokenNo = tokenNo;
+	public void setDeliveryAgent(String deliveryAgent){
+		this.deliveryAgent = deliveryAgent;
 	}
 
-	public String getTokenNo(){
-		return tokenNo;
-	}
-
-	public void setSize(String size){
-		this.size = size;
-	}
-
-	public String getSize(){
-		return size;
+	public String getDeliveryAgent(){
+		return deliveryAgent;
 	}
 
 	public void setUpdatedAt(String updatedAt){
@@ -139,20 +167,20 @@ public class OrderDetailItem{
 		return price;
 	}
 
-	public void setSubTotal(String subTotal){
-		this.subTotal = subTotal;
+	public void setVeg(String veg){
+		this.veg = veg;
 	}
 
-	public String getSubTotal(){
-		return subTotal;
+	public String getVeg(){
+		return veg;
 	}
 
-	public void setOrderId(String orderId){
-		this.orderId = orderId;
+	public void setId(String id){
+		this.id = id;
 	}
 
-	public String getOrderId(){
-		return orderId;
+	public String getId(){
+		return id;
 	}
 
 	public void setEmail(String email){
@@ -163,6 +191,14 @@ public class OrderDetailItem{
 		return email;
 	}
 
+	public void setRegular(String regular){
+		this.regular = regular;
+	}
+
+	public String getRegular(){
+		return regular;
+	}
+
 	public void setCrustId(String crustId){
 		this.crustId = crustId;
 	}
@@ -171,25 +207,133 @@ public class OrderDetailItem{
 		return crustId;
 	}
 
+	public void setItem(String item){
+		this.item = item;
+	}
+
+	public String getItem(){
+		return item;
+	}
+
+	public void setPaymentMode(String paymentMode){
+		this.paymentMode = paymentMode;
+	}
+
+	public String getPaymentMode(){
+		return paymentMode;
+	}
+
+	public void setQuantity(String quantity){
+		this.quantity = quantity;
+	}
+
+	public String getQuantity(){
+		return quantity;
+	}
+
+	public void setLarge(String large){
+		this.large = large;
+	}
+
+	public String getLarge(){
+		return large;
+	}
+
+	public void setUrl(String url){
+		this.url = url;
+	}
+
+	public String getUrl(){
+		return url;
+	}
+
+	public void setTokenNo(String tokenNo){
+		this.tokenNo = tokenNo;
+	}
+
+	public String getTokenNo(){
+		return tokenNo;
+	}
+
+	public void setSize(String size){
+		this.size = size;
+	}
+
+	public String getSize(){
+		return size;
+	}
+
+	public void setSubTotal(String subTotal){
+		this.subTotal = subTotal;
+	}
+
+	public String getSubTotal(){
+		return subTotal;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public void setOrderTotal(String orderTotal){
+		this.orderTotal = orderTotal;
+	}
+
+	public String getOrderTotal(){
+		return orderTotal;
+	}
+
+	public void setCategory(String category){
+		this.category = category;
+	}
+
+	public String getCategory(){
+		return category;
+	}
+
+	public void setOrderId(String orderId){
+		this.orderId = orderId;
+	}
+
+	public String getOrderId(){
+		return orderId;
+	}
+
 	@Override
  	public String toString(){
 		return 
 			"OrderDetailItem{" + 
-			"item = '" + item + '\'' + 
-			",quantity = '" + quantity + '\'' + 
-			",extra_cheese = '" + extraCheese + '\'' + 
+			"extra_cheese = '" + extraCheese + '\'' + 
 			",topping_detail = '" + toppingDetail + '\'' + 
 			",created_at = '" + createdAt + '\'' + 
+			",medium = '" + medium + '\'' + 
+			",content = '" + content + '\'' + 
 			",topping_id = '" + toppingId + '\'' + 
-			",token_no = '" + tokenNo + '\'' + 
-			",size = '" + size + '\'' + 
+			",delivery_agent = '" + deliveryAgent + '\'' + 
 			",updated_at = '" + updatedAt + '\'' + 
 			",topping_qty = '" + toppingQty + '\'' + 
 			",price = '" + price + '\'' + 
-			",sub_total = '" + subTotal + '\'' + 
-			",order_id = '" + orderId + '\'' + 
+			",veg = '" + veg + '\'' + 
+			",id = '" + id + '\'' + 
 			",email = '" + email + '\'' + 
+			",regular = '" + regular + '\'' + 
 			",crust_id = '" + crustId + '\'' + 
+			",item = '" + item + '\'' + 
+			",payment_mode = '" + paymentMode + '\'' + 
+			",quantity = '" + quantity + '\'' + 
+			",large = '" + large + '\'' + 
+			",url = '" + url + '\'' + 
+			",token_no = '" + tokenNo + '\'' + 
+			",size = '" + size + '\'' + 
+			",sub_total = '" + subTotal + '\'' + 
+			",name = '" + name + '\'' + 
+			",order_total = '" + orderTotal + '\'' + 
+			",category = '" + category + '\'' + 
+			",order_id = '" + orderId + '\'' + 
 			"}";
 		}
 }

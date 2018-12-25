@@ -94,7 +94,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/athiti"
                 android:maxLines="1"
-                android:text="Crust: Loaded Loaded with Cheese Crust"
+                android:text="Crust: Cheese Crust"
                 android:textStyle="normal" />
         </LinearLayout>
 

@@ -46,6 +46,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_round_bg"
                 android:inputType="textEmailAddress"
+                android:textEditSuggestionItemLayout="@color/white"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"

@@ -1,7 +1,6 @@
 package co.pizzayum.pizzayum_android.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,12 +16,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
-import co.pizzayum.pizzayum_android.activities.ItemDetails;
 import co.pizzayum.pizzayum_android.adapters.PizzaListAdapter;
 import co.pizzayum.pizzayum_android.adapters.TabListAdapter;
 import co.pizzayum.pizzayum_android.models.PizzaDetailsModel;
@@ -31,6 +33,7 @@ import co.pizzayum.pizzayum_android.services.PizzaService;
 import co.pizzayum.pizzayum_android.utility.CustomItemClickListener;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 import co.pizzayum.pizzayum_android.utility.RecyclerTouchListener;
+import co.pizzayum.pizzayum_android.utility.SessionManager;
 
 public class HomeFragment extends Fragment {
 
@@ -41,6 +44,8 @@ public class HomeFragment extends Fragment {
     List<PizzaDetailsModel> pizzaListData;
     PizzaListAdapter adapter;
     RecyclerView pizza_list;
+    RelativeLayout custom_loader_container;
+    ImageView loader_img_view;
 
     /**
      * Create an instance of the Fragment
@@ -66,6 +71,11 @@ public class HomeFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        custom_loader_container = view.findViewById(R.id.custom_loader);
+        loader_img_view = view.findViewById(R.id.loader_view);
+        pizzaCustomLoader();
+        custom_loader_container.setVisibility(View.INVISIBLE);
+
         // initialising horizontal custom tab view using recycler view
         initialisingTabView(view);
 
@@ -76,9 +86,11 @@ public class HomeFragment extends Fragment {
         toolBarInitializer(view);
 
         // calling service to fetch pizza and tab data
-        // new Pizza(getActivity()).fetchingCategories(tabListAdapter, tab_list, adapter, pizzaList);
         Log.e("Home", "Calling Api");
-        new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter, pizzaListData);
+        SessionManager session = new SessionManager(getActivity());
+        session.checkLogin();
+
+        new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter, pizzaListData, custom_loader_container);
 
         tabular_view.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
                 tabular_view, new CustomItemClickListener() {
@@ -100,13 +112,11 @@ public class HomeFragment extends Fragment {
             }
         }));
 
-//        pizza_list.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
-//                pizza_list, new CustomItemClickListener() {
-//            @Override
-//            public void onItemClick(View v, int position) {
-//                startActivity(new Intent(getActivity(), ItemDetails.class));
-//            }
-//        }));
+    }
+
+    void pizzaCustomLoader() {
+        Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotation_animation);
+        loader_img_view.startAnimation(rotation);
     }
 
     void toolBarInitializer(View v) {
