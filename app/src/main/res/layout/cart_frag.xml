@@ -126,7 +126,6 @@
                     android:layout_height="wrap_content"
                     android:text="BILL DETAILS"
                     android:textStyle="bold"
-                    android:textColor="#455dfa"
                     android:textSize="12dp"
                     android:fontFamily="@font/athiti"
                     />
