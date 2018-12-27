@@ -104,7 +104,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         proceed_payment_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createQuote();
+               // createQuote();
+                startActivity(new Intent(getActivity(), PaymentOptions.class));
             }
         });
         address_edit_btn_view.setOnClickListener(this);
@@ -163,115 +164,6 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         }
         total_bill.setText(getActivity().getString(R.string.Rs) + bill);
         Log.e("Cart Fragment", "");
-    }
-
-    String requestJsonGenerator() {
-        String temp = "[";
-        for (int i = 0; i < db.getAllOrders().size(); i++) {
-            PizzaOrderTableModel model = db.getAllOrders().get(i);
-            temp += "{";
-            temp += "\"productID\":" + model.getProduct_id();
-            temp += ",\"size\":\"" + model.getSize() + "\"";
-            temp += ",\"quantity\":" + model.getProduct_quantity();
-
-            if (nullChecker(model.getCrust_id()))
-                temp += ",\"crust_id\":" + model.getCrust_id();
-            if (nullChecker(model.getTopping_id())) {
-                temp += ",\"topping_id\":" + model.getTopping_id();
-                temp += ",\"topping_detail\":\"" + model.getTopping_details() + "\"";
-                temp += ",\"topping_qty\":" + model.getTopping_counter();
-            }
-            if (nullChecker(model.getExtra_cheese_id()))
-                temp += ",\"extra_cheese\":" + model.getExtra_cheese_id();
-
-            if (i == db.getAllOrders().size() - 1) {
-                temp += "}";
-            } else {
-                temp += "},";
-            }
-        }
-        temp += "]";
-
-        Log.e("generated", "Created Record: " + temp);
-        return temp;
-        // return "[{\"productID\": 1,\"size\":\"regular\",\"quantity\":2}]";
-    }
-
-    boolean nullChecker(String a) {
-        if (a == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    void createQuote() {
-
-        String url = "http://www.pizzayum.co/api/order";
-
-        try {
-            JSONObject jsonBody = new JSONObject();
-            jsonBody.put("data", requestJsonGenerator());
-            jsonBody.put("email", session.returnEmail());
-            final String requestBody = jsonBody.toString();
-            Log.e("Log", "auth: " + requestBody);
-            progress_bar_view.setVisibility(View.VISIBLE);
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.POST,        // Post method
-                    url,
-                    null, // Parameters
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            progress_bar_view.setVisibility(View.INVISIBLE);
-                            GsonBuilder gsonBuilder = new GsonBuilder();
-                            Gson gson = gsonBuilder.create();
-
-                            // assigning data in model class, we initializing this class as a array type
-                            // because the response is in array format
-                            OrderResponse model = gson.fromJson(response.toString(), OrderResponse.class);
-                            PizzaConstants.ORDER_ID = model.getOrderId();
-                            Log.e("ORDERID", "ORDERID:" + model.getOrderId());
-                            getActivity().startActivity(new Intent(getActivity(), PaymentOptions.class));
-                            Log.e("Response", "Response: " + response.toString());
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            progress_bar_view.setVisibility(View.INVISIBLE);
-                            Log.e("Response", "Error: " + error);
-                        }
-                    }) {
-
-                @Override
-                public java.util.Map<String, String> getHeaders() {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Accept", "application/json");
-                    headers.put("Authorization", session.returnToken());
-                    return headers;
-                }
-
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-            };
-            RequestQueue queue = Volley.newRequestQueue(getActivity());
-            queue.add(request);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

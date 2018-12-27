@@ -50,7 +50,8 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     RelativeLayout cart_footer_view;
     TextView bill_view, quantity_view, counter_view;
     CheckBox extra_cheese_view;
-    TextView cart_btn_view;
+    TextView cart_btn_view, cheese_price_view;
+    ImageView back_button_view;
 
     int item_counter = 1;
     int total_bill = 0;
@@ -95,7 +96,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         clickListenerInitialization();
 
         initialiseCartData();
-
+        setExtraCheesePriceTag();
         size_slider_view.addOnItemTouchListener(new RecyclerTouchListener(this,
                 size_slider_view, new CustomItemClickListener() {
             @Override
@@ -116,6 +117,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 extra_cheese_view.setChecked(false);
                 extra_cheese_price = 0;
 
+                setExtraCheesePriceTag();
                 setFinalView();
             }
         }));
@@ -139,14 +141,14 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 }
 
                 if (m.isTopping_button_flag()) {
-                    topping_counter --;
+                    topping_counter--;
                     m.setTopping_button_flag(false);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
                     topping_price = topping_price - Integer.parseInt(PizzaConstants.PIZZA_TOPPING_PRICE);
                     logGenerator("Topping False");
                 } else {
-                    topping_counter ++;
+                    topping_counter++;
                     m.setTopping_button_flag(true);
                     topping_model_list.set(position, m);
                     topping_adapter.notifyDataSetChanged();
@@ -224,6 +226,21 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         }));
     }
 
+    void setExtraCheesePriceTag() {
+        String price = getString(R.string.Rs);
+        switch (PizzaConstants.SELECTED_PIZZA_SIZE) {
+            case "Regular":
+                price += extra_cheese_data.getRegular();
+                break;
+            case "Medium":
+                price += extra_cheese_data.getMedium();
+                break;
+            case "Large":
+                price += extra_cheese_data.getLarge();
+        }
+        cheese_price_view.setText(price);
+    }
+
     void resetVariables() {
         PizzaConstants.SIZE_ENABLE_POSITION = 0;
         PizzaConstants.SELECTED_PIZZA_SIZE = "Regular";
@@ -239,6 +256,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         PizzaConstants.EXTRA_CHEESE_PRICE = "0";
         PizzaConstants.EXTRA_CHEESE_ID = null;
         PizzaConstants.BILL = "0";
+
+        // reset extra cheese price tag
+        setExtraCheesePriceTag();
     }
 
     void logGenerator(String Tag) {
@@ -329,9 +349,12 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         plus_view.setOnClickListener(this);
         minus_view.setOnClickListener(this);
         cart_btn_view.setOnClickListener(this);
+        back_button_view.setOnClickListener(this);
     }
 
     void contentInitializer() {
+        back_button_view = findViewById(R.id.back_button);
+        cheese_price_view = findViewById(R.id.cheese_price);
         pizza_name_view = findViewById(R.id.selected_pizza);
         pizza_cat_view = findViewById(R.id.pizza_cat);
         pizza_content_view = findViewById(R.id.lbl);
@@ -476,12 +499,12 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
 
     private void createOrder() {
 
-        PizzaConstants.ID = 0 ;
-        for (PizzaOrderTableModel pizza: db.getAllOrders()){
+        PizzaConstants.ID = 0;
+        for (PizzaOrderTableModel pizza : db.getAllOrders()) {
             PizzaConstants.ID = pizza.getId();
-            Log.e("Count","Count Log: "+PizzaConstants.ID);
+            Log.e("Count", "Count Log: " + PizzaConstants.ID);
         }
-        PizzaConstants.ID++ ;
+        PizzaConstants.ID++;
 
         PizzaOrderTableModel model = new PizzaOrderTableModel(
                 PizzaConstants.ID,
@@ -540,6 +563,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
             case R.id.cart_btn:
                 createOrder();
                 Toast.makeText(this, "Record Added", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case R.id.back_button:
                 finish();
                 break;
         }

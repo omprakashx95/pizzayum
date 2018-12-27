@@ -13,29 +13,13 @@
         android:scaleType="centerCrop"
         android:src="@drawable/pizza_bg" />
 
-    <!-- toolbar layout-->
-    <RelativeLayout
-        android:id="@+id/action_bar"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="20dp"
+        android:layout_marginLeft="16dp"
         android:layout_height="56dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_button"
-            android:tint="@color/white"/>
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/wish_unclicked"
-            android:tint="@color/white"/>
-    </RelativeLayout>
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:tint="@color/white"/>
 
     <!--intro section-->
     <ScrollView
@@ -190,20 +174,37 @@
                 android:paddingRight="16dp"
                 android:paddingBottom="15dp">
 
-                <CheckBox
-                    android:id="@+id/checkbox"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/checkbox_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Extra Cheese"
-                    android:onClick="onCheckboxClicked"
-                    android:fontFamily="@font/athiti"
-                    android:textColor="#aaa"
                     android:layout_marginTop="10dp"
-                    android:buttonTint="@color/colorPrimary"
-                    />
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Extra Cheese"
+                        android:onClick="onCheckboxClicked"
+                        android:fontFamily="@font/athiti"
+                        android:textColor="#a3a3a3"
+                        android:buttonTint="@color/colorPrimary"
+                        />
+                    <TextView
+                        android:id="@+id/cheese_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$40"
+                        android:fontFamily="@font/athiti"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/green_color"
+                        android:textSize="14dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
 
                 <TextView
-                    android:layout_below="@id/checkbox"
+                    android:layout_below="@id/checkbox_container"
                     android:id="@+id/topping_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

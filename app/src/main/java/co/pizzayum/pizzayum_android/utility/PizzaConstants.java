@@ -3,6 +3,7 @@ package co.pizzayum.pizzayum_android.utility;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.models.HistorySortedModel;
+import co.pizzayum.pizzayum_android.models.InvoiceModel;
 import co.pizzayum.pizzayum_android.models.SelectedCatResponse;
 
 public class PizzaConstants {
@@ -18,6 +19,7 @@ public class PizzaConstants {
     public static int HISTORY_ROW_POSITION = 0;
     // Data Array
     public static SelectedCatResponse[] getResult;
+    public static InvoiceModel INVOICE_MODEL ;
 
     // About Pizza Order
     public static int ID;

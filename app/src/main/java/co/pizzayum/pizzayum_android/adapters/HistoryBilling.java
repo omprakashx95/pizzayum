@@ -72,7 +72,6 @@ public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
        // final OrderDetailItem model = pizzaDetailsModelList.get(position);
-
     }
 
     @Override

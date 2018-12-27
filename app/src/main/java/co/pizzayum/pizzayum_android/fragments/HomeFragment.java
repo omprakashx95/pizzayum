@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e("Home", "On Create View");
         return inflater.inflate(R.layout.home_frag, container, false);
     }
 
@@ -86,11 +85,11 @@ public class HomeFragment extends Fragment {
         toolBarInitializer(view);
 
         // calling service to fetch pizza and tab data
-        Log.e("Home", "Calling Api");
         SessionManager session = new SessionManager(getActivity());
         session.checkLogin();
 
-        new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter, pizzaListData, custom_loader_container);
+        new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter,
+                pizzaListData, custom_loader_container);
 
         tabular_view.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
                 tabular_view, new CustomItemClickListener() {
@@ -162,7 +161,6 @@ public class HomeFragment extends Fragment {
         pizza_list.setItemAnimator(new DefaultItemAnimator());
         pizza_list.setAdapter(adapter);
     }
-
 }
 
 

@@ -33,14 +33,17 @@
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
+
     <ScrollView
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/top1"
                 android:layout_width="match_parent"
@@ -91,6 +94,7 @@
                     android:text="by Anil Kumar"
                     android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/top2"
                 android:layout_width="match_parent"
@@ -125,6 +129,7 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/top3"
                 android:layout_width="match_parent"
@@ -227,5 +232,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>
