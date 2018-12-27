@@ -31,18 +31,16 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
-import co.pizzayum.pizzayum_android.activities.CustomLoader;
+import co.pizzayum.pizzayum_android.activities.OrderDetails;
 import co.pizzayum.pizzayum_android.adapters.HistoryAdapter;
 import co.pizzayum.pizzayum_android.models.HistoryResponse;
 import co.pizzayum.pizzayum_android.models.HistorySortedModel;
 import co.pizzayum.pizzayum_android.models.OrderDetailItem;
-import co.pizzayum.pizzayum_android.models.PizzaDetailsModel;
-import co.pizzayum.pizzayum_android.models.SelectedCatResponse;
-import co.pizzayum.pizzayum_android.services.Pizza;
 import co.pizzayum.pizzayum_android.utility.CustomItemClickListener;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 import co.pizzayum.pizzayum_android.utility.RecyclerTouchListener;
@@ -85,7 +83,7 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 PizzaConstants.HISTORY_ROW_POSITION = position;
-                startActivity(new Intent(getActivity(), CustomLoader.class));
+                startActivity(new Intent(getActivity(), OrderDetails.class));
             }
         }));
     }
@@ -133,41 +131,28 @@ public class HistoryFragment extends Fragment {
                             //Initialize gson obj to process jason response
                             GsonBuilder gsonBuilder = new GsonBuilder();
                             Gson gson = gsonBuilder.create();
-
                             HistoryResponse model = gson.fromJson(response.toString(), HistoryResponse.class);
-                            //history_slider_data1.addAll(model.getOrderDetail());
-
-
                             List<OrderDetailItem> data = new ArrayList<>();
+
                             data.addAll(model.getOrderDetail());
-
                             selected_id = "0";
-                            Log.e("Data","------------------------------------------");
                             for (int i = 0; i < data.size(); i++) {
-                                Log.e("previous","p_id: "+selected_id+ " i:"+i);
                                 if (!(selected_id.equals(data.get(i).getOrderId()))) {
-                                    Log.e("previous","previous_id: "+selected_id+ " i:"+i);
                                     selected_id = data.get(i).getOrderId();
-                                    Log.e("changed id","changed_id: "+selected_id+ " i:"+i);
-
                                     if (history_slider_data.size() > 0) {
-                                        Log.e("inserting", " ADD Record ");
                                         HistorySortedModel m = new HistorySortedModel(history_slider_data);
                                         PizzaConstants.history_slider_data_sorted.add(m);
                                         history_slider_data = new ArrayList<>();
                                     }
                                 }
-
                                 history_slider_data.add(data.get(i));
-                                Log.e("Size", "I: " + i + " size: " + history_slider_data.size());
-
                                 if (i == data.size()-1) {
-                                    Log.e("inserting", " ADkjhkjhkhkjhjkhkhD Record ");
                                     HistorySortedModel m = new HistorySortedModel(history_slider_data);
                                     PizzaConstants.history_slider_data_sorted.add(m);
                                 }
                             }
 
+                            Collections.reverse(PizzaConstants.history_slider_data_sorted);
                             historyAdapter.notifyDataSetChanged();
                         }
                     },

@@ -46,11 +46,12 @@
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_round_bg"
                 android:inputType="textEmailAddress"
-                android:textEditSuggestionItemLayout="@color/white"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:textSize="16dp"/>
+                android:text="mukesh@gmail.com"
+                android:textEditSuggestionItemLayout="@color/white"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/password_label"
@@ -68,9 +69,9 @@
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:fontFamily="@font/athiti"
+                android:text="123456"
                 android:textSize="16dp"
-                />
+                app:fontFamily="@font/athiti" />
 
             <Button
                 android:id="@+id/login_button"

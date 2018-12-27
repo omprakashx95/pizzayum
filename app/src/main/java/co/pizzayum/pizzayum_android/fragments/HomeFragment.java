@@ -66,50 +66,53 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Toolbar stuff
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-        custom_loader_container = view.findViewById(R.id.custom_loader);
-        loader_img_view = view.findViewById(R.id.loader_view);
-        pizzaCustomLoader();
-        custom_loader_container.setVisibility(View.INVISIBLE);
-
-        // initialising horizontal custom tab view using recycler view
-        initialisingTabView(view);
-
-        // Creating Pizza List
-        initializingPizzaListView(view);
-
-        // collapsible toolbar initializer
-        toolBarInitializer(view);
-
         // calling service to fetch pizza and tab data
         SessionManager session = new SessionManager(getActivity());
-        session.checkLogin();
+        if (session.isLoggedIn()) {
+            // Toolbar stuff
+            Toolbar toolbar = view.findViewById(R.id.toolbar);
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter,
-                pizzaListData, custom_loader_container);
+            custom_loader_container = view.findViewById(R.id.custom_loader);
+            loader_img_view = view.findViewById(R.id.loader_view);
+            pizzaCustomLoader();
+            custom_loader_container.setVisibility(View.INVISIBLE);
 
-        tabular_view.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
-                tabular_view, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                PizzaConstants.ENABLE_POSITION = position;
-                tabListAdapter.notifyDataSetChanged();
-                pizzaListData.clear();
-                for (SelectedCatResponse a : PizzaConstants.getResult) {
-                    if (a.getCategory().equals(tab_list.get(position))) {
-                        PizzaDetailsModel model = new PizzaDetailsModel(
-                                a.getId(), a.getName(), a.getUrl(), a.getRegular(),
-                                a.getMedium(), a.getLarge(), a.getContent(), a.getCategory(),
-                                a.getVeg(), " ", "");
-                        pizzaListData.add(model);
+            // initialising horizontal custom tab view using recycler view
+            initialisingTabView(view);
+
+            // Creating Pizza List
+            initializingPizzaListView(view);
+
+            // collapsible toolbar initializer
+            toolBarInitializer(view);
+
+            new PizzaService(getActivity()).fetchingSelectedCat(tabListAdapter, tab_list, adapter,
+                    pizzaListData, custom_loader_container);
+
+            tabular_view.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
+                    tabular_view, new CustomItemClickListener() {
+                @Override
+                public void onItemClick(View v, int position) {
+                    PizzaConstants.ENABLE_POSITION = position;
+                    tabListAdapter.notifyDataSetChanged();
+                    pizzaListData.clear();
+                    for (SelectedCatResponse a : PizzaConstants.getResult) {
+                        if (a.getCategory().equals(tab_list.get(position))) {
+                            PizzaDetailsModel model = new PizzaDetailsModel(
+                                    a.getId(), a.getName(), a.getUrl(), a.getRegular(),
+                                    a.getMedium(), a.getLarge(), a.getContent(), a.getCategory(),
+                                    a.getVeg(), " ", "");
+                            pizzaListData.add(model);
+                        }
                     }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
-            }
-        }));
+            }));
+
+        } else {
+            session.checkLogin();
+        }
 
     }
 

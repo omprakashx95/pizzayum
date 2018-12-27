@@ -59,7 +59,6 @@ public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHo
     public HistoryBilling(Context mContext, List<OrderDetailItem> pizzaDetailsModelList) {
         this.mContext = mContext;
         this.pizzaDetailsModelList = pizzaDetailsModelList;
-        db = new DatabaseHelper(mContext);
     }
 
     @Override
