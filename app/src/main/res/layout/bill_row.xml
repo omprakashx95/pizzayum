@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -26,15 +27,13 @@
             android:id="@+id/thin_crust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/athiti"
-            android:text="Crust: Thin Crust" />
+            android:fontFamily="@font/athiti"/>
 
         <TextView
             android:id="@+id/toppings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/athiti"
-            android:text="Toppings: Tomato, Potato" />
+            android:fontFamily="@font/athiti"/>
     </LinearLayout>
 
     <LinearLayout

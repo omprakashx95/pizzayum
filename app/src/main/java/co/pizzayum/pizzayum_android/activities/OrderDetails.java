@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +17,7 @@ import co.pizzayum.pizzayum_android.R;
 import co.pizzayum.pizzayum_android.adapters.HistoryBilling;
 import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity  implements View.OnClickListener{
     RecyclerView bill_slider_viw;
     HistoryBilling billing_adapter;
 
@@ -32,6 +33,7 @@ public class OrderDetails extends AppCompatActivity {
         agent_name = findViewById(R.id.agent_name);
         d_loc = findViewById(R.id.d_location);
         order_number = findViewById(R.id.order_number);
+        findViewById(R.id.back_button).setOnClickListener(this);
 
         if (PizzaConstants.history_slider_data_sorted.
                 get(PizzaConstants.HISTORY_ROW_POSITION).getHistory_slider_data().size() > 0) {
@@ -89,5 +91,13 @@ public class OrderDetails extends AppCompatActivity {
             return "PM";
         else
             return "AM";
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.back_button:
+                finish();
+        }
     }
 }

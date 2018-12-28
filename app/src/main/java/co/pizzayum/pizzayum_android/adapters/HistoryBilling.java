@@ -5,16 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import co.pizzayum.pizzayum_android.R;
-import co.pizzayum.pizzayum_android.models.HistorySortedModel;
 import co.pizzayum.pizzayum_android.models.OrderDetailItem;
-import co.pizzayum.pizzayum_android.models.PizzaOrderTableModel;
 import co.pizzayum.pizzayum_android.utility.DatabaseHelper;
 
 public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHolder> {
@@ -22,14 +18,18 @@ public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHo
     private Context mContext;
     private List<OrderDetailItem> pizzaDetailsModelList;
     private int counter_value = 0;
-    DatabaseHelper db ;
+    DatabaseHelper db;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, content, item_total, pizza_size;
+        public TextView title, thin_crust, topping, item_bill;
+
         public MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
-            content = view.findViewById(R.id.content);
-            }
+            thin_crust = view.findViewById(R.id.thin_crust);
+            topping = view.findViewById(R.id.toppings);
+            item_bill = view.findViewById(R.id.item_bill);
+        }
     }
 
     public HistoryBilling(Context mContext, List<OrderDetailItem> pizzaDetailsModelList) {
@@ -46,13 +46,27 @@ public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-       // final OrderDetailItem model = pizzaDetailsModelList.get(position);
+        final OrderDetailItem model = pizzaDetailsModelList.get(position);
+        String t = model.getQuantity()+ " x " +model.getName() + " ["+model.getSize()+"]";
+        holder.title.setText(t);
+        holder.item_bill.setText(mContext.getString(R.string.Rs) + model.getSubTotal());
+        if (model.getCrustId() == null){
+            holder.thin_crust.setVisibility(View.GONE);
+        }else{
+            holder.thin_crust.setText(model.getCrustId());
+        }
+
+        if (model.getToppingDetail() == null){
+            holder.topping.setVisibility(View.GONE);
+        }else{
+            holder.topping.setText(model.getToppingDetail());
+        }
+
     }
 
     @Override
     public int getItemCount() {
         return pizzaDetailsModelList.size();
     }
-
 
 }
