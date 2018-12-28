@@ -25,35 +25,11 @@ public class HistoryBilling extends RecyclerView.Adapter<HistoryBilling.MyViewHo
     DatabaseHelper db ;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, content, item_total, pizza_size;
-        public ImageView thumbnail;
-        public View card_view, btn_active;
-
-        public ImageView plus, minus;
-        TextView counter;
-
-        LinearLayout customisation_container;
-        TextView customisation_btn, extra_toppings, extra_crust;
-
         public MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
             content = view.findViewById(R.id.content);
-            pizza_size = view.findViewById(R.id.pizza_size);
-            thumbnail = view.findViewById(R.id.thumbnail);
-
-            customisation_container = view.findViewById(R.id.customisation_container);
-            customisation_btn = view.findViewById(R.id.customisation_btn);
-            extra_toppings = view.findViewById(R.id.extra_toppings);
-            extra_crust = view.findViewById(R.id.extra_crust);
-
-            card_view = view.findViewById(R.id.card_view);
-
-            plus = view.findViewById(R.id.plus);
-            minus = view.findViewById(R.id.minus);
-            counter = view.findViewById(R.id.counter);
-
-            item_total = view.findViewById(R.id.item_total);
-        }
+            }
     }
 
     public HistoryBilling(Context mContext, List<OrderDetailItem> pizzaDetailsModelList) {

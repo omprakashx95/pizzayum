@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,21 +37,22 @@ import co.pizzayum.pizzayum_android.utility.PizzaConstants;
 import co.pizzayum.pizzayum_android.utility.SessionManager;
 
 public class PaymentOptions extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout cash_method_view;
+    RelativeLayout cash_method_view;
     ImageView back_button;
     DatabaseHelper db ;
     SessionManager session ;
     RelativeLayout custom_loader_container;
     ImageView loader_img_view;
+    TextView pay_amount ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_options);
         cash_method_view = findViewById(R.id.cash_method);
         back_button = findViewById(R.id.back_button);
+        pay_amount = findViewById(R.id.pay_amount);
         db = new DatabaseHelper(this);
         session = new SessionManager(this);
-
 
         custom_loader_container = findViewById(R.id.custom_loader);
         loader_img_view = findViewById(R.id.loader_view);
@@ -66,6 +68,7 @@ public class PaymentOptions extends AppCompatActivity implements View.OnClickLis
         });
 
         back_button.setOnClickListener(this);
+        pay_amount.setText(PizzaConstants.TOTAL_BILL);
     }
 
     void pizzaCustomLoader() {

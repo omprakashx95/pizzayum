@@ -185,7 +185,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Extra Cheese"
-                        android:onClick="onCheckboxClicked"
                         android:fontFamily="@font/athiti"
                         android:textColor="#a3a3a3"
                         android:buttonTint="@color/colorPrimary"

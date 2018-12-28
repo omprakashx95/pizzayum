@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="Delivery Location "
                     android:textColor="@color/black"
                     android:fontFamily="@font/athiti"
                     android:textSize="18dp"
@@ -110,7 +110,7 @@
             android:layout_below="@id/order_placed_lbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order placed on December 23, 9:42 PM by Sumit Kumar"
+            android:text="Order placed on December 23, 9:42 PM"
             android:layout_marginLeft="16dp"
             android:fontFamily="@font/athiti"
             android:textStyle="bold"
@@ -144,7 +144,7 @@
         android:id="@+id/invoice_slider"
         android:layout_below="@id/info_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"/>
 
     <TextView

@@ -95,8 +95,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         cart_model_list = new ArrayList<>();
         cart_slider_view = view.findViewById(R.id.recycler_view);
         address_edit_btn_view = view.findViewById(R.id.address_edit_btn);
-        progress_bar_view = view.findViewById(R.id.progress_bar);
-        progress_bar_view.setVisibility(View.INVISIBLE);
+        //progress_bar_view = view.findViewById(R.id.progress_bar);
+        //progress_bar_view.setVisibility(View.INVISIBLE);
         delivery_address_view = view.findViewById(R.id.delivery_address);
         sizeSlider();
 
@@ -163,6 +163,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             bill += Integer.parseInt(m.getBill());
         }
         total_bill.setText(getActivity().getString(R.string.Rs) + bill);
+        PizzaConstants.TOTAL_BILL = getActivity().getString(R.string.Rs) + bill;
         Log.e("Cart Fragment", "");
     }
 

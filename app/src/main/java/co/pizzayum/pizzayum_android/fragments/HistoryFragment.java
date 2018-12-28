@@ -131,10 +131,11 @@ public class HistoryFragment extends Fragment {
                             //Initialize gson obj to process jason response
                             GsonBuilder gsonBuilder = new GsonBuilder();
                             Gson gson = gsonBuilder.create();
-                            HistoryResponse model = gson.fromJson(response.toString(), HistoryResponse.class);
-                            List<OrderDetailItem> data = new ArrayList<>();
+                            PizzaConstants.HISTORY_RESPONSE = gson.fromJson(response.toString(), HistoryResponse.class);
 
-                            data.addAll(model.getOrderDetail());
+                            List<OrderDetailItem> data = new ArrayList<>();
+                            data.addAll(PizzaConstants.HISTORY_RESPONSE.getOrderDetail());
+
                             selected_id = "0";
                             for (int i = 0; i < data.size(); i++) {
                                 if (!(selected_id.equals(data.get(i).getOrderId()))) {

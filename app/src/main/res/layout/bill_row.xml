@@ -23,12 +23,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/thin_crust"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/athiti"
             android:text="Crust: Thin Crust" />
 
         <TextView
+            android:id="@+id/toppings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/athiti"
@@ -41,6 +43,7 @@
         android:layout_weight="1.5">
 
         <TextView
+             android:id="@+id/item_bill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

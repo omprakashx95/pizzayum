@@ -66,6 +66,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/d_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/athiti"
@@ -80,6 +81,7 @@
                     android:background="#dadada" />
 
                 <TextView
+                    android:id="@+id/d_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -88,6 +90,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/agent_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/athiti"
@@ -168,6 +171,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/order_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/athiti"

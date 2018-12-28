@@ -285,7 +285,7 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
         topping_pics.add(R.drawable.red_paprika);
     }
 
-    void onCheckboxClicked(View view) {
+    void onCheckboxClicked() {
         boolean checked = extra_cheese_view.isChecked();
 
         switch (PizzaConstants.SELECTED_PIZZA_SIZE) {
@@ -346,10 +346,12 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     void clickListenerInitialization() {
+        extra_cheese_view.setOnClickListener(this);
         plus_view.setOnClickListener(this);
         minus_view.setOnClickListener(this);
         cart_btn_view.setOnClickListener(this);
         back_button_view.setOnClickListener(this);
+
     }
 
     void contentInitializer() {
@@ -564,6 +566,9 @@ public class ItemDetails extends AppCompatActivity implements View.OnClickListen
                 createOrder();
                 Toast.makeText(this, "Record Added", Toast.LENGTH_SHORT).show();
                 finish();
+                break;
+            case R.id.checkbox:
+                onCheckboxClicked();
                 break;
             case R.id.back_button:
                 finish();

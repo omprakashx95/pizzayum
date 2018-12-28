@@ -20,8 +20,7 @@ public class OrderDetails extends AppCompatActivity {
     RecyclerView bill_slider_viw;
     HistoryBilling billing_adapter;
 
-    TextView date_text_view;
-
+    TextView date_text_view, d_time, agent_name, d_loc, order_number;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +28,25 @@ public class OrderDetails extends AppCompatActivity {
         historySlider();
 
         date_text_view = findViewById(R.id.order_date);
+        d_time = findViewById(R.id.d_time);
+        agent_name = findViewById(R.id.agent_name);
+        d_loc = findViewById(R.id.d_location);
+        order_number = findViewById(R.id.order_number);
+
         if (PizzaConstants.history_slider_data_sorted.
                 get(PizzaConstants.HISTORY_ROW_POSITION).getHistory_slider_data().size() > 0) {
 
             String time = PizzaConstants.history_slider_data_sorted.
                     get(PizzaConstants.HISTORY_ROW_POSITION).getHistory_slider_data().get(0).getCreatedAt();
             date_text_view.setText(dateFormatter(time));
+            String t = "Order Delivered on "+ dateFormatter(time);
+            d_time.setText(t);
+            String d_boy = "by " + PizzaConstants.history_slider_data_sorted.
+                    get(PizzaConstants.HISTORY_ROW_POSITION).getHistory_slider_data().get(0).getDeliveryAgent();
+            agent_name.setText(d_boy);
+            d_loc.setText(PizzaConstants.HISTORY_RESPONSE.getUser().getAddress());
+            order_number.setText(PizzaConstants.history_slider_data_sorted.
+                    get(PizzaConstants.HISTORY_ROW_POSITION).getHistory_slider_data().get(0).getOrderId());
         }
     }
 
